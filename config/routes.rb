@@ -1,12 +1,26 @@
 Tms::Application.routes.draw do
+  get "project/title:string"
+
+  get "project/version:string"
+
+  get "project/abstract:text"
+
+  get "project/created:datetime"
+
+  get "project/user:references"
+
   get "portal/index"
 
   devise_for :users, :controllers => { :registrations => "users" }
 
   devise_scope :user do
-    get "batch_create" => "users#batch_new", :as => "batch_create"
-    post "upload" => "users#upload", :as => "upload"
-    get "upload" => "users#batch_new", :as => "batch_create"
+    get "portal/users" => "users#index", :as => "users"
+    get "portal/users/:id" => "users#show", :as => "user"
+    get "portal/add" => "users#add", :as => "add_user"
+    post "portal/users" => "users#create_new"
+    delete "portal/users/:id" => "users#destroy"
+    get "portal/import_users" => "users#batch_new", :as => "import_users"
+    post "portal/upload" => "users#upload", :as => "upload"
   end
 
   get "home/index"

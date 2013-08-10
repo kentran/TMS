@@ -1,5 +1,14 @@
 body {
-  padding-top: 70px;
+  padding: 70px 20px 20px 20px;
+}
+
+h2 {
+  color: #4682B4;
+  text-decoration: none;
+}
+
+input[name="commit"].btn, a.btn {
+  margin-top: 10px;
 }
 
 .navbar-fixed-top {
