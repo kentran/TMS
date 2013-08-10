@@ -1,0 +1,6 @@
+<h1>Batch Create Users</h1>
+
+<%= form_tag({action: :upload}, multipart: true) do %>
+  <%= file_field_tag 'user_list' %>
+  <%= submit_tag ("Upload") %>
+<% end %>
