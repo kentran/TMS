@@ -1,0 +1,12 @@
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+ 
+<p>
+  <strong>Abstract:</strong>
+  <%= @project.abstract %>
+</p>
+
+<%= link_to "Edit", edit_user_project_path(@project), :class => "btn btn-primary" %> 
+<%= link_to "Back", :back, :class => "btn btn-default" %>

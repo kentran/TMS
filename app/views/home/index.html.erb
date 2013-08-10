@@ -1,2 +1,9 @@
-<h1>Welcome to TMS</h1>
-<p>Add more background info about TMS here</p>
+<h2>Welcome to TMS</h2>
+
+<p>Project list:</p>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li><%= link_to project.title, [current_user, project] %></li>
+  <% end %>
+</ul>
