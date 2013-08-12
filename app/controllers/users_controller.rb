@@ -15,12 +15,14 @@ class UsersController < Devise::RegistrationsController
     @user = User.find(params[:id])
     @user.destroy
 
+    record_activity("deleted user: " + @user.email)
     redirect_to users_path, :notice => "User deleted"
   end
 
   def create_new
     @user = User.new(params[:user])
     if @user.save
+      record_activity("created new user: " + @user.email)
       redirect_to add_user_path, :notice => "User created successfully"
     else
       render 'add'

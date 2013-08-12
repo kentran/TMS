@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811174450) do
+ActiveRecord::Schema.define(:version => 20130812150427) do
+
+  create_table "activity_logs", :force => true do |t|
+    t.string   "user_id"
+    t.string   "browser"
+    t.string   "ip_addr"
+    t.string   "controller"
+    t.string   "action"
+    t.text     "params"
+    t.string   "note"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "project_files", :force => true do |t|
     t.string   "file_name"

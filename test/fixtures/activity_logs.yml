@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: MyString
+  browser: MyString
+  ip_addr: MyString
+  controller: MyString
+  action: MyString
+  params: MyString
+  note: MyString
+
+two:
+  user_id: MyString
+  browser: MyString
+  ip_addr: MyString
+  controller: MyString
+  action: MyString
+  params: MyString
+  note: MyString
