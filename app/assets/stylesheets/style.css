@@ -2,13 +2,17 @@ body {
   padding: 70px 20px 20px 20px;
 }
 
-h2 {
+h1, h2, h3 {
   color: #4682B4;
   text-decoration: none;
 }
 
 input[name="commit"].btn, a.btn {
   margin-top: 10px;
+}
+
+a[data-method="delete"] {
+  color: #DC143C;
 }
 
 .navbar-fixed-top {

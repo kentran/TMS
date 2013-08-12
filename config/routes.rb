@@ -11,9 +11,13 @@ Tms::Application.routes.draw do
     post "/users/upload" => "users#upload", :as => "upload"
   end
 
-  resources :users do
+  resources :users do 
     resources :projects
   end
+
+  get "/download" => "projects#download"
+  post "/users/:user_id/projects/:id" => "projects#upload"
+  delete "/project_files/:id" => "project_files#destroy", :as => "project_file"
 
   get "home/index"
   root :to => "home#index"

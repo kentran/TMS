@@ -16,7 +16,7 @@
   <% end %> 
 
   <div><%= f.label :email %><br/>
-  <%= f.email_field :email, :class => "form-control", :autofocus => true %></div>
+    <%= f.email_field :email, :class => "form-control", :autofocus => true, :autocomplete => "off" %></div>
 
   <div><%= f.label :password %><br/>
   <%= f.password_field :password, :class => "form-control" %></div>

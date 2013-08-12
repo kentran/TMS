@@ -31,16 +31,14 @@ class UsersController < Devise::RegistrationsController
   end
 
   def upload
-    uploaded_io = params[:user_list]
+    uploaded_io = params[:file]
     file_path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
     File.open(file_path, 'w') do |file|
       file.write(uploaded_io.read)
     end
 
     if File.exist?(file_path)
-      redirect_to import_users_url, :notice => "File is uploaded successfully!"
     else
-      redirect_to import_users_url, :notice => "File failed to upload!"
     end
 
   end

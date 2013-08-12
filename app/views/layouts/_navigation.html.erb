@@ -1,17 +1,20 @@
 <%= link_to "TMS", root_path, :class => 'navbar-brand' %>
 <ul class="nav navbar-nav">
   <% if user_signed_in? %>
+    <%= nav_link 'Manage Users', users_path %>
+    <%= nav_link 'Create User', add_user_path %>
+    <%= nav_link 'Import Users', import_users_path %>
+    <%= nav_link 'Create New Project', new_user_project_path(current_user) %>
+  <% end %>
+</ul>
+
+<ul class="nav navbar-nav pull-right">
+  <% if user_signed_in? %>
+    <%= nav_link 'My Account', edit_user_registration_path %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
     </li>
   <% else %>
     <%= nav_link 'Login', new_user_session_path %>
-  <% end %>
-  <% if user_signed_in? %>
-    <%= nav_link 'Edit Account', edit_user_registration_path %>
-    <%= nav_link 'Manage Users', users_path %>
-    <%= nav_link 'Create User', add_user_path %>
-    <%= nav_link 'Batch Create Users', import_users_path %>
-    <%= nav_link 'Create New Project', new_user_project_path(current_user) %>
   <% end %>
 </ul>
