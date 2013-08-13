@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813074150) do
+ActiveRecord::Schema.define(:version => 20130813125936) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -51,15 +51,6 @@ ActiveRecord::Schema.define(:version => 20130813074150) do
     t.integer "project_id"
     t.integer "user_id"
   end
-
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
