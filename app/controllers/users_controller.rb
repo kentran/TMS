@@ -1,4 +1,6 @@
 class UsersController < Devise::RegistrationsController
+  load_and_authorize_resource
+
   def index
     @users = User.all
   end
@@ -11,6 +13,21 @@ class UsersController < Devise::RegistrationsController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update_attributes(params[:user])
+      record_activity("updated user details: " + @user.id.to_s)
+      redirect_to user_path
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -21,6 +38,7 @@ class UsersController < Devise::RegistrationsController
 
   def create_new
     @user = User.new(params[:user])
+    
     if @user.save
       record_activity("created new user: " + @user.email)
       redirect_to add_user_path, :notice => "User created successfully"

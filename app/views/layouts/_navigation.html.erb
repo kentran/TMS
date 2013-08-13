@@ -1,10 +1,18 @@
 <%= link_to "TMS", root_path, :class => 'navbar-brand' %>
 <ul class="nav navbar-nav">
   <% if user_signed_in? %>
-    <%= nav_link 'Manage Users', users_path %>
-    <%= nav_link 'Create User', add_user_path %>
-    <%= nav_link 'Import Users', import_users_path %>
-    <%= nav_link 'Create New Project', new_user_project_path(current_user) %>
+    <% if can? :read, User, :index => true %>
+      <%= nav_link 'Manage Users', users_path %>
+    <% end %> 
+    <% if can? :create, User %>
+      <%= nav_link 'Create User', add_user_path %>
+    <% end %>
+    <% if can? :import_users, User %>
+      <%= nav_link 'Import Users', import_users_path %>
+    <% end %>
+    <% if can? :create, Project %>
+      <%= nav_link 'Create New Project', new_user_project_path(current_user) %>
+    <% end %>
   <% end %>
 </ul>
 

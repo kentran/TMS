@@ -5,7 +5,7 @@
 <% end %>
 
 <table class="table table-hover">
-  <th>Type</th>
+  <th>Role</th>
   <th>First Name</th>
   <th>Last Name</th>
   <th>Email</th>
@@ -13,12 +13,19 @@
 
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.level %></td>
+      <td><%= user.role %></td>
       <td><%= user.first_name %></td>
       <td><%= user.last_name %></td>
       <td><%= user.email %></td>
-      <td><%= link_to "Show", user %> |
-        <%= link_to "Delete", user, :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
+      <td>
+        <%= link_to "Show", user %>
+        <% if can? :edit, user %>
+          | <%= link_to "Edit", edit_user_path(user) %>
+        <% end %>
+        <% if can? :destroy, user %>
+          | <%= link_to "Delete", user, :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
+        <% end %>  
+      </td>
     </tr>
   <% end %>
 </table>

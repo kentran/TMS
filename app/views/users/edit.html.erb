@@ -1,0 +1,30 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(@user, :html => { :method => :put, :class => "input-group" }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <h3>Login Credentials</h3>
+  <div><%= f.label :email %><br />
+    <%= f.email_field :email, :class => "form-control", :autofocus => true %></div>
+
+  <h3>Personal Info</h3>
+  <div><%= f.label :first_name %><br />
+  <%= f.text_field :first_name, :class => "form-control" %></div>
+
+  <div><%= f.label :last_name %><br />
+  <%= f.text_field :last_name, :class => "form-control" %></div>
+
+  <div><%= f.label :title %><br />
+  <%= f.text_field :title, :class => "form-control" %></div>
+
+  <div><%= f.label :university %><br />
+  <%= f.text_field :university, :class => "form-control" %></div>
+
+  <div><%= f.label :department %><br />
+  <%= f.text_field :department, :class => "form-control" %></div>
+
+  <div><%= f.label :role %>
+    <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %></div>
+
+  <div><%= f.submit "Update", :class => "btn btn-primary" %></div>
+<% end %>

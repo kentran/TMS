@@ -39,8 +39,8 @@
   <div><%= f.label :department %><br />
   <%= f.text_field :department, :class => "form-control" %></div>
 
-  <div><%= f.label :level %>
-  <%= f.select(:level, [['admin', 0], ['student',10], ['professor', 11], ['moderator', 12]]) %></div>
+  <div><%= f.label :role %>
+  <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %></div>
 
   <div><%= f.submit "Create", :class => "btn btn-primary" %> <%= link_to "Back", :back, :class => "btn btn-default" %></div>
 <% end %>
