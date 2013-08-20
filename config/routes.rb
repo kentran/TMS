@@ -4,13 +4,13 @@ Tms::Application.routes.draw do
   devise_scope :user do
     get "/users" => "users#index", :as => "users"
     get "/users/add" => "users#add", :as => "add_user"
-    get "/users/import_users" => "users#batch_new", :as => "import_users"
+    get "/users/import_users" => "users#import", :as => "import_users"
     get "/users/:id" => "users#show", :as => "user"
     get "/users/:id/edit" => "users#edit"
     put "/users/:id" => "users#update"
     post "/users" => "users#create_new"
     delete "/users/:id" => "users#destroy"
-    post "/users/upload" => "users#upload", :as => "upload"
+    post "/users/import_users" => "users#batch_create"
   end
 
   resources :users do 

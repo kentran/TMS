@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to TMS,</h1>
+    <p>
+      You have successfully signed up to tms.com,
+      your username is: <%= @user.email %>.<br/>
+      your temporary password is: <%= @user.password %>.
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @sign_in_url %>.<br/>
+      To change your password, please follow this link: <%= @edit_account_url %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
