@@ -4,15 +4,18 @@
     <% if can? :read, User, :index => true %>
       <%= nav_link 'Manage Users', users_path %>
     <% end %> 
-    <% if can? :create, User %>
+    <% if can? :add, User %>
       <%= nav_link 'Create User', add_user_path %>
     <% end %>
-    <% if can? :import_users, User %>
-      <%= nav_link 'Import Users', import_users_path %>
-    <% end %>
-    <% if can? :create, Project %>
-      <%= nav_link 'New Project', new_user_project_path(current_user) %>
-    <% end %>
+    
+    <li>
+      <a data-toggle="dropdown" href="#">Project</a>
+      <ul class="dropdown-menu" role="menu" aira-labelledby="dLabel">
+        <% if can? :create, Project %>
+          <%= nav_link 'New Project', new_user_project_path(current_user) %>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
 

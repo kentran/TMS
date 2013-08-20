@@ -1,0 +1,23 @@
+<h3>Personal Info</h3>
+<div><%= f.label :first_name %><br />
+<%= f.text_field :first_name, :class => "form-control" %></div>
+
+<div><%= f.label :last_name %><br />
+<%= f.text_field :last_name, :class => "form-control" %></div>
+
+<div><%= f.label :title %><br />
+<%= f.text_field :title, :class => "form-control" %></div>
+
+<div><%= f.label :university %><br />
+<%= f.text_field :university, :class => "form-control" %></div>
+
+<div><%= f.label :department %><br />
+<%= f.text_field :department, :class => "form-control" %></div>
+
+<div><%= f.label :role %>
+<% if can? :assign_super_admin, current_user %>
+  <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
+<% else %>
+  <%= f.select(:role, [['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
+<% end %>
+</div>

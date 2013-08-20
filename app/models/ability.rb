@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     if user.role == 'Admin'
       can :manage, :all
+      can :assign_super_admin, User
     elsif user.role == 'Student'
       cannot :read, User, :index => true
       can :manage, Project
@@ -13,8 +14,11 @@ class Ability
       cannot :destroy, Project
     elsif user.role == 'Manager'
       can :read, :all
-      can :import_users, User
-      can :manage, User
+      can :edit, User
+      can :destroy, User
+      can :add, User
+      can :create_new, User
+      can :batch_create, User
     end
 
     # Define abilities for the passed in user here. For example:

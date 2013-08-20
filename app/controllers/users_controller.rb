@@ -51,26 +51,6 @@ class UsersController < Devise::RegistrationsController
   def import 
   end
 
-  def upload
-    uploaded_io = params[:file]
-    if uploaded_io == nil 
-      render 'import', :alert => "File fails to upload"
-    end 
-
-    file_path = Rails.public_path + "/uploads/" + uploaded_io.original_filename
-    File.open(file_path, 'wb') do |file|
-      file.write(uploaded_io.read)
-    end 
-
-    if File.exist?(file_path)
-      record_activity("uploaded import file " + uploaded_io.original_filename)
-      redirect_to user_project_path(@project), :notice => "File uploaded successfully"
-    else
-      record_activity("upload failed " + uploaded_io.original_filename)
-      render 'import', :alert => "File info is failed to save"
-    end 
-  end
-
   def batch_create
     email_list = params[:email_list].split
  

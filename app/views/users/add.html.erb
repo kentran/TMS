@@ -24,23 +24,9 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation, :class => "form-control" %></div>
  
-  <div><%= f.label :first_name %><br />
-  <%= f.text_field :first_name, :class => "form-control" %></div>
-
-  <div><%= f.label :last_name %><br />
-  <%= f.text_field :last_name, :class => "form-control" %></div>
-
-  <div><%= f.label :title %><br />
-  <%= f.text_field :title, :class => "form-control" %></div>
-
-  <div><%= f.label :university %><br />
-  <%= f.text_field :university, :class => "form-control" %></div>
-
-  <div><%= f.label :department %><br />
-  <%= f.text_field :department, :class => "form-control" %></div>
-
-  <div><%= f.label :role %>
-  <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %></div>
+  <%= render 'personal_fields', :f => f %>
 
   <div><%= f.submit "Create", :class => "btn btn-primary" %> <%= link_to "Back", :back, :class => "btn btn-default" %></div>
 <% end %>
+
+<%= render 'import' %>

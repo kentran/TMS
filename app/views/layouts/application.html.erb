@@ -2,11 +2,12 @@
 <html>
   <head>
     <title>Tms</title>
-    <%= stylesheet_link_tag    "application", "bootstrap", "style", :media => "all" %>
+    <%= stylesheet_link_tag    "application", "bootstrap", "bootstrap-theme", "style", :media => "all" %>
     <%= javascript_include_tag "application", "bootstrap", "pdf", "compatibility"  %>
     <%= csrf_meta_tags %>
   </head>
   <body>
+    
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -14,7 +15,15 @@
         </div>
       </div>
     </div>
-<%= yield %>
+     
+    <div class="row">
+      <div class="col-md-2">
+        <%= render 'layouts/left_sidebar' %>
+      </div>
+      <div class="col-md-10">
+        <%= yield %>
+      </div>
+    </div>
 
   </body>
 </html>
