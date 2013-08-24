@@ -1,0 +1,3 @@
+var reference_panel = $("<%= escape_javascript(render @project_reference) %>");
+$("#reference-form-div-<%= @project_reference.id %>").closest('.panel').after(reference_panel);
+$("#reference-form-div-<%= @project_reference.id %>").remove();

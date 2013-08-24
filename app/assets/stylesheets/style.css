@@ -18,3 +18,13 @@ a[data-method="delete"] {
 .navbar-fixed-top {
   border-bottom: solid 1px #c0c0c0;
 }
+
+.reference-link
+{
+	color: #428BCA;
+}
+
+#add-reference {
+	cursor: pointer;
+	float: right;
+}

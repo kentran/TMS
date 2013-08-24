@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820131335) do
+ActiveRecord::Schema.define(:version => 20130824132622) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(:version => 20130820131335) do
   add_index "project_files", ["project_id"], :name => "index_project_files_on_project_id"
   add_index "project_files", ["user_id"], :name => "index_project_files_on_user_id"
 
+  create_table "project_references", :force => true do |t|
+    t.string   "reference_source"
+    t.string   "reference_url"
+    t.text     "content"
+    t.integer  "project_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "project_references", ["project_id"], :name => "index_project_references_on_project_id"
+
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "abstract"
@@ -51,17 +62,6 @@ ActiveRecord::Schema.define(:version => 20130820131335) do
     t.integer "project_id"
     t.integer "user_id"
   end
-
-  create_table "references", :force => true do |t|
-    t.string   "source"
-    t.string   "link"
-    t.text     "content"
-    t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "references", ["project_id"], :name => "index_references_on_project_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

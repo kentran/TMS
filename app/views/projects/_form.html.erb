@@ -8,7 +8,7 @@
   </div>
 <% end %> 
 
-<%= form_for [current_user, @project], html: {class: "input-group"} do |f| %>
+<%= form_for @project, html: {class: "input-group"} do |f| %>
   <div><%= f.label :title %><br />
   <%= f.text_field :title, :class => "form-control" %></div>
 

@@ -1,0 +1,24 @@
+/* Replace the reference with the form */
+var form = $("<%= escape_javascript(render :partial => 'project_references/edit') %>");
+$("#reference-<%= @project_reference.id %>").closest('.panel').after(form);
+$("#reference-<%= @project_reference.id %>").closest('.panel').remove();
+
+/* If the "cancel" button is click, the old reference should be loaded */
+$("div[id=cancel]").on("click", function() {
+	var reference_panel = $("<%= escape_javascript(render @project_reference) %>");
+	$("#reference-form-div-<%= @project_reference.id %>").closest('.panel').after(reference_panel);
+	$("#reference-form-div-<%= @project_reference.id %>").remove();
+});
+
+$("#reference-form-<%= @project_reference.id %>").on("ajax:error", function (xhr, status, error) {
+	$("#update-reference-error").remove();
+	var error_div = $('<div></div>').addClass('alert alert-danger');
+	error_div.attr('id', 'update-reference-error');
+	var error_list = $('<ul></ul');
+
+	$.each(status.responseJSON, function() {
+		error_list.append($('<li></li>').html(this));
+	});
+	error_div.append(error_list);
+	$("#reference-form-<%= @project_reference.id %>").before(error_div);
+});

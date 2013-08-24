@@ -23,9 +23,9 @@ class ProjectsController < ApplicationController
   def update
     @project = current_user.projects.find(params[:id])
 
-    if @project.update(params[:project])
+    if @project.update_attributes(params[:project])
       record_activity("updated project details: " + @project.id.to_s)
-      redirect_to root_path
+      redirect_to @project
     else
       render 'edit'
     end
@@ -34,6 +34,7 @@ class ProjectsController < ApplicationController
   def show
     @project = current_user.projects.find(params[:id])
     @project_files = @project.project_files.all
+    @project_references = @project.project_references.all
   end
 
   def upload
@@ -52,7 +53,7 @@ class ProjectsController < ApplicationController
     @project_file = ProjectFile.new( :file_name => uploaded_io.original_filename, :file_path => file_path, :user_id => params[:user_id], :project_id => params[:project_id])
     if @project_file.save
       record_activity("uploaded " + uploaded_io.original_filename)
-      redirect_to user_project_path(@project), :notice => "File uploaded successfully"
+      redirect_to project_path(@project), :notice => "File uploaded successfully"
     else
       record_activity("upload failed " + uploaded_io.original_filename)
       render 'show', :alert => "File info is failed to save"

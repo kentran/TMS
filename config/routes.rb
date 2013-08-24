@@ -13,12 +13,14 @@ Tms::Application.routes.draw do
     post "/users/import_users" => "users#batch_create"
   end
 
-  resources :users do 
-    resources :projects
+  resources :users, shallow: true do 
+    resources :projects, shallow: true do
+      resources :project_references
+    end
   end
 
   get "/download" => "projects#download"
-  post "/users/:user_id/projects/:id" => "projects#upload"
+  post "/projects/:id" => "projects#upload"
   delete "/project_files/:id" => "project_files#destroy", :as => "project_file"
 
   get "home/index"

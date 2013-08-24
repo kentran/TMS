@@ -1,0 +1,33 @@
+$(document).ready( function() {
+	$("#add-reference").on("click", function() {
+		/* Render the add reference form */
+		$(".panel-group").append("<%= escape_javascript(render :partial => 'project_references/new') %>");
+		$("#add-reference").css('display', 'none');
+		
+		/* Add event for "cancel" button, clear the form */
+		$("div[id=cancel]").on("click", function() {
+			$(this).closest(".panel").remove();
+			$("#add-reference").css('display', '');
+		});
+		
+		/* Clear the form when ajax call is successful */
+		$("#reference-form").on("ajax:success", function (e, data, status, xhr) {
+			$(this).closest(".panel").remove();
+			$("#add-reference").css('display', '');
+		});
+		
+		/* Create error notice when ajax call fails */
+		$("#reference-form").on("ajax:error", function (xhr, status, error) {
+			$("#add-reference-error").remove();
+			var error_div = $('<div></div>').addClass('alert alert-danger');
+			error_div.attr('id', 'add-reference-error');
+			var error_list = $('<ul></ul');
+
+			$.each(status.responseJSON, function() {
+				error_list.append($('<li></li>').html(this));
+			});
+			error_div.append(error_list);
+			$("#reference-form").before(error_div);
+		});
+	});		
+});
