@@ -1,10 +1,15 @@
 body {
-  padding: 70px 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
 }
 
 h1, h2, h3 {
   color: #4682B4;
   text-decoration: none;
+}
+
+h3 {
+	border-bottom: solid 1px #ccc;
+	padding-bottom: 5px;
 }
 
 input[name="commit"].btn, a.btn {
@@ -26,5 +31,16 @@ a[data-method="delete"] {
 
 #add-reference {
 	cursor: pointer;
-	float: right;
+}
+
+.sidebar-nav-fixed {
+    position: fixed;
+    left: 20px;
+    top: 60px;
+    width: 15%;
+}
+
+#content-col
+{
+	border-left: 1px solid #ccc;
 }

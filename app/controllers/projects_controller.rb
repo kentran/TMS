@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   load_and_authorize_resource
 
   def new
-    @project = Project.new
+    @project = current_user.projects.build
   end
 
   def create

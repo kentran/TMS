@@ -17,13 +17,12 @@
 	<%= @project.title %>
 </p>
  
-<p>
+<p id="abstract">
 	<strong>Abstract:</strong>
-	<%= @project.abstract %>
+	<%= simple_format(@project.abstract) %>
 </p>
 
 <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
-<%= link_to "Back", :back, :class => "btn btn-default" %>
 
 
 <h3>References</h3>

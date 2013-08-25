@@ -48,9 +48,6 @@ class UsersController < Devise::RegistrationsController
     end
   end
 
-  def import 
-  end
-
   def batch_create
     email_list = params[:email_list].split
  
@@ -68,4 +65,5 @@ class UsersController < Devise::RegistrationsController
 
     redirect_to users_path
   end
+  
 end

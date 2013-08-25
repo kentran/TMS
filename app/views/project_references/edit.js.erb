@@ -1,5 +1,6 @@
 /* Replace the reference with the form */
 var form = $("<%= escape_javascript(render :partial => 'project_references/edit') %>");
+
 $("#reference-<%= @project_reference.id %>").closest('.panel').after(form);
 $("#reference-<%= @project_reference.id %>").closest('.panel').remove();
 

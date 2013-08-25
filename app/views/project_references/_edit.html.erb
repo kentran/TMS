@@ -2,9 +2,6 @@
 	<div class="panel-heading">
 		<%= form_for (@project_reference), html: {id: 'reference-form-' + @project_reference.id.to_s }, remote: true do |f| %>
 			<%= render 'project_references/form_fields', :f => f %>
-		
-			<div><%= f.submit "Update Reference", :class => "btn btn-primary btn-block" %></div>
-			<div id="cancel"><a class="btn btn-default btn-block">Cancel</a></div>
 		<% end %>
 	</div>
 </div>

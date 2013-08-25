@@ -17,4 +17,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
 
+  def self.search(search)
+    if search
+      where('first_name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
 end
