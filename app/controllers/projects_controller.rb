@@ -45,17 +45,23 @@ class ProjectsController < ApplicationController
       render 'show', :alert => "File fails to upload"
     end 
 
-    file_path = Rails.public_path + "/uploads/" + uploaded_io.original_filename
+    file_name = Time.now.to_i.to_s + "_" + uploaded_io.original_filename
+    file_path = Rails.public_path + "/uploads/" + file_name
     File.open(file_path, 'wb') do |file|
       file.write(uploaded_io.read)
     end 
 
-    @project_file = ProjectFile.new( :file_name => uploaded_io.original_filename, :file_path => file_path, :user_id => params[:user_id], :project_id => params[:project_id])
+    @project_file = ProjectFile.new( :file_name => file_name, 
+      :file_path => file_path, 
+      :user_id => params[:user_id], 
+      :project_id => params[:project_id],
+      :original_file_name => uploaded_io.original_filename)
+
     if @project_file.save
-      record_activity("uploaded " + uploaded_io.original_filename)
+      record_activity("uploaded " + file_name)
       redirect_to project_path(@project), :notice => "File uploaded successfully"
     else
-      record_activity("upload failed " + uploaded_io.original_filename)
+      record_activity("upload failed " + file_name)
       render 'show', :alert => "File info is failed to save"
     end 
   end 
@@ -64,5 +70,15 @@ class ProjectsController < ApplicationController
     record_activity("downloaded " + params[:file_name])
     send_file Rails.root.join('public', 'uploads', params[:file_name])
   end 
+
+=begin
+  def add_collaborator
+    @project = current_user.projects.find(params[:id])
+    @collaborator = User.find(params[:collaborator_id])
+    @project.users << @collaborator
+
+    @project.save
+  end=end
+
 
 end

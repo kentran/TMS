@@ -7,9 +7,22 @@ h1, h2, h3 {
   text-decoration: none;
 }
 
-h3 {
-	border-bottom: solid 1px #ccc;
-	padding-bottom: 5px;
+h3.content-item {
+	border-top: solid 1px #ccc;
+  padding: 10px 0 0 15px;
+  margin-left: -15px;
+}
+
+h3.content-item:first-child {
+  border-top: none;
+}
+
+.navbar .navbar-nav > .active > a {
+  background-color: #eeeeee;
+}
+
+.nav-stacked > .active > a {
+  background-color: #eeeeee;
 }
 
 input[name="commit"].btn, a.btn {
@@ -35,7 +48,6 @@ a[data-method="delete"] {
 
 .sidebar-nav-fixed {
     position: fixed;
-    left: 20px;
     top: 60px;
     width: 15%;
 }

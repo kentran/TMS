@@ -15,7 +15,22 @@
 
 	<div id="reference-<%= project_reference.id %>" class="panel-collapse collapse">
 		<div class="panel-body">
-			<%= project_reference.content %>
+			<% if project_reference.author.to_s != '' %>
+				<strong>Author:</strong>
+				<%= project_reference.author %><br/>
+			<% end %>
+			<% if project_reference.publisher.to_s != '' %>
+				<strong>Publisher:</strong>
+				<%= project_reference.publisher %><br/>
+			<% end %>
+			<% if project_reference.year.to_s != '' %>
+				<strong>Year:</strong>
+				<%= project_reference.year %><br/>
+			<% end %>
+			<% if project_reference.content.to_s != '' %>
+				<strong>Content:</strong><br/>
+				<%= project_reference.content %>
+			<% end %>
 		</div>
 	</div>
 </div>

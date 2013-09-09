@@ -1,13 +1,25 @@
 <div class="row">
 	<div class="col-md-6"><%= f.text_field :reference_source, :class => "form-control",
-		:placeholder => "Reference Source" %></div>
+	:placeholder => "Reference Source" %></div>
 
 	<div class="col-md-6"><%= f.text_field :reference_url, :class => "form-control",
-		:placeholder => "Reference URL with http or https (eg. http://www.google.com)" %></div>
+	:placeholder => "Reference URL with http or https (eg. http://www.google.com)" %></div>
 </div>
-<br/>	
+
+<br/>
+
+<div class="row">
+	<div class="col-md-5"><%= f.text_field :author, :class => "form-control",
+:placeholder => "Author" %></div>	
+	<div class="col-md-5"><%= f.text_field :publisher, :class => "form-control",
+:placeholder => "Publisher" %></div>
+	<div class="col-md-2"><%= f.text_field :year, :class => "form-control",
+:placeholder => "Year" %></div>
+</div>
+
+<br/>
 <div><%= f.text_area :content, :class => "form-control",
-	:placeholder => "Reference Content", :size => "50x5" %></div>
-	
+:placeholder => "Reference Content", :size => "50x5" %></div>
+
 <div><%= f.submit "Submit", :class => "btn btn-primary btn-block" %></div>
 <div id="cancel"><a class="btn btn-default btn-block">Cancel</a></div>
