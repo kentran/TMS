@@ -61,6 +61,7 @@ GEM
     multi_json (1.7.8)
     mysql2 (0.3.13)
     orm_adapter (0.4.0)
+    pg (0.16.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -77,6 +78,11 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.1)
+    rails_stdout_logging (0.0.2)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -118,6 +124,8 @@ DEPENDENCIES
   devise
   jquery-rails
   mysql2
+  pg
   rails (= 3.2.13)
+  rails_12factor
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
