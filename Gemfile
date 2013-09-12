@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'devise'
 gem 'cancan'
 
+gem 'unicorn'
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead:
