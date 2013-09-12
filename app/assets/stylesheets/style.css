@@ -29,6 +29,10 @@ input[name="commit"].btn, a.btn {
   margin-top: 10px;
 }
 
+input[name="commit"].btn.btn-inline, a.btn.btn-inline {
+  margin-top: 0;
+}
+
 a[data-method="delete"] {
   color: #DC143C;
 }
@@ -52,7 +56,15 @@ a[data-method="delete"] {
     width: 15%;
 }
 
-#content-col
-{
+#content-col {
 	border-left: 1px solid #ccc;
+}
+
+.form-group.single-field {
+  width: 33%;
+}
+
+.dropdown-menu > li > a {
+  cursor: pointer;
+  font-weight: 500;
 }

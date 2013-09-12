@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130909081314) do
+ActiveRecord::Schema.define(:version => 20130912171041) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(:version => 20130909081314) do
     t.integer "project_id"
     t.integer "user_id"
   end
+
+  add_index "projects_users", ["project_id", "user_id"], :name => "by_project_and_user", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

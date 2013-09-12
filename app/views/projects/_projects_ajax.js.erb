@@ -30,4 +30,20 @@ $(document).ready( function() {
 			$("#reference-form").before(error_div);
 		});
 	});
+
+	$("#collaborator").autocomplete({
+		source: "/search_users",
+		messages: {
+			noResults: "",
+			results: function(count) {}
+		},
+		response: function( event, ui ) {
+			$("ul.ui-autocomplete").addClass("dropdown-menu");
+			$("#add-collaborator-btn").prop('disabled', true);
+		},
+		select: function () {
+			$("#add-collaborator-btn").prop('disabled', false);
+		}
+	});
+
 });

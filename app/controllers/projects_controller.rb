@@ -71,14 +71,18 @@ class ProjectsController < ApplicationController
     send_file Rails.root.join('public', 'uploads', params[:file_name])
   end 
 
-=begin
   def add_collaborator
     @project = current_user.projects.find(params[:id])
-    @collaborator = User.find(params[:collaborator_id])
+    @collaborator = User.find_by_email(params[:collaborator])
     @project.users << @collaborator
 
-    @project.save
-  end=end
-
+    if @project.save
+      record_activity("added supervisor " + params[:collaborator])
+      redirect_to project_path(@project), :notice => "Supervisor is added successfully"
+    else
+      record_activity("error occured when added supervisor " + params[:collaborator])
+      redirect_to project_path(@project), :alert => "Supervisor is already added"
+    end
+  end
 
 end

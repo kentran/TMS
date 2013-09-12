@@ -11,6 +11,7 @@ Tms::Application.routes.draw do
     post "/users" => "users#create_new"
     delete "/users/:id" => "users#destroy"
     post "/users/import_users" => "users#batch_create"
+    get "/search_users" => "users#search"
   end
 
   resources :users, shallow: true do 
@@ -22,6 +23,8 @@ Tms::Application.routes.draw do
   get "/download" => "projects#download"
   post "/projects/:id" => "projects#upload"
   delete "/project_files/:id" => "project_files#destroy", :as => "project_file"
+
+  post "/projects/:id/add_collaborator" => "projects#add_collaborator", :as => "add_collaborator"
 
   get "home/index"
   root :to => "home#index"
