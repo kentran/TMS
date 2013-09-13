@@ -7,5 +7,7 @@ test.pdf: test-d8e6e844e30a8fa293cbfc7ae58efacf.pdf
 test/index.pdf: test-d8e6e844e30a8fa293cbfc7ae58efacf.pdf
 application.css: application-446d5ac0e1f9c289141d4452752e66ea.css
 application/index.css: application-446d5ac0e1f9c289141d4452752e66ea.css
+style.css: style-5b2fac0db4068066e0099113e201976d.css
+style/index.css: style-5b2fac0db4068066e0099113e201976d.css
 jquery.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 jquery/index.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
