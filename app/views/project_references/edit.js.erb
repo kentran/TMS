@@ -7,7 +7,6 @@ $("#reference-<%= @project_reference.id %>").closest('.panel').remove();
 /* If the "cancel" button is click, the old reference should be loaded */
 $("div[id=cancel]").on("click", function() {
 	var reference_panel = $("<%= escape_javascript(render @project_reference) %>");
-	console.log (reference_panel);
 	$("#reference-form-div-<%= @project_reference.id %>").closest('.panel').after(reference_panel);
 	$("#reference-form-div-<%= @project_reference.id %>").remove();
 });

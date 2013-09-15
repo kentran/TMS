@@ -46,4 +46,15 @@ $(document).ready( function() {
 		}
 	});
 
+	$("#add-supervisor-form").css('display', 'none');
+	$("#add-supervisor").on('click', function () {
+		$("#add-supervisor-form").css('display', '');
+		$("#add-supervisor").css('display', 'none');
+	});
+
+	$("#cancel-add-supervisor").on('click', function () {
+		$("#add-supervisor-form").css('display', 'none');
+		$("#add-supervisor").css('display', '');
+	});
+
 });

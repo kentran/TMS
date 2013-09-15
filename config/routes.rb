@@ -25,6 +25,7 @@ Tms::Application.routes.draw do
   delete "/project_files/:id" => "project_files#destroy", :as => "project_file"
 
   post "/projects/:id/add_collaborator" => "projects#add_collaborator", :as => "add_collaborator"
+  delete "projects/:id/remove_collaborator/:collaborator_id" => "projects#remove_collaborator"
 
   get "home/index"
   root :to => "home#index"

@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find(params[:id])
     @project_files = @project.project_files.all
     @project_references = @project.project_references.all
+    @supervisors = @project.users.all(:conditions => ['role = ?', 'professor'])
   end
 
   def upload
@@ -83,6 +84,14 @@ class ProjectsController < ApplicationController
       record_activity("error occured when added supervisor " + params[:collaborator])
       redirect_to project_path(@project), :alert => "Supervisor is already added"
     end
+  end
+
+  def remove_collaborator
+    @project = current_user.projects.find(params[:id])
+    @collaborator = User.find(params[:collaborator_id])
+    @project.users.delete(@collaborator)
+
+    redirect_to project_path(@project), :alert => "Supervisor is added successfully"
   end
 
 end

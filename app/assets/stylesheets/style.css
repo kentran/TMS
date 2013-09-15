@@ -46,7 +46,7 @@ a[data-method="delete"] {
 	color: #428BCA;
 }
 
-#add-reference {
+#add-reference, #add-supervisor {
 	cursor: pointer;
 }
 
@@ -67,4 +67,8 @@ a[data-method="delete"] {
 .dropdown-menu > li > a {
   cursor: pointer;
   font-weight: 500;
+}
+
+.supvervisor-table > tr > td:last-child {
+  margin-left: 20px;
 }
