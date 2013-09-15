@@ -6,6 +6,7 @@ gem 'cancan'
 
 gem 'unicorn'
 gem 'rails_12factor', group: :production
+gem 'postmark-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
