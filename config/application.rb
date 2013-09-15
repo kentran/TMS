@@ -61,6 +61,6 @@ module Tms
 
     config.assets.initialize_on_precompile = false
     config.action_mailer.delivery_method   = :postmark
-    config.action_mailer.postmark_settings = { :api_key => ENV['5e7af1e2-f8a8-4c67-93f6-4c2f0a72f83a'] }
+    config.action_mailer.postmark_settings = { :api_key => ENV['POSTMARK_API_KEY'] }
   end
 end
