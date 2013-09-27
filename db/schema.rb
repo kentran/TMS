@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912171041) do
+ActiveRecord::Schema.define(:version => 20130926132431) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -25,14 +25,26 @@ ActiveRecord::Schema.define(:version => 20130912171041) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "notifications", :force => true do |t|
+    t.string   "recipient"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notifications", ["project_id"], :name => "index_notifications_on_project_id"
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "project_files", :force => true do |t|
     t.string   "file_name"
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "file_path"
     t.string   "original_file_name"
+    t.boolean  "primary",            :default => false, :null => false
   end
 
   add_index "project_files", ["project_id"], :name => "index_project_files_on_project_id"
@@ -58,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130912171041) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "deadline"
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
@@ -70,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20130912171041) do
   add_index "projects_users", ["project_id", "user_id"], :name => "by_project_and_user", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -86,9 +99,12 @@ ActiveRecord::Schema.define(:version => 20130912171041) do
     t.string   "university"
     t.integer  "university_id"
     t.string   "department"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "role"
+    t.boolean  "notif_on",               :default => true,  :null => false
+    t.boolean  "reminder_on",            :default => true,  :null => false
+    t.boolean  "upload_confirm_on",      :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -7,8 +7,12 @@ class Ability
       can :assign_super_admin, User
     elsif user.role == 'Student'
       cannot :read, User, :index => true
+      can :search, User
       can :manage, Project
       cannot :destroy, Project
+      unless user.projects.empty?
+        cannot :create, Project
+      end
     elsif user.role == 'Professor'
       can :manage, Project
       cannot :destroy, Project

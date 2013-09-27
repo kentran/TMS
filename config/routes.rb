@@ -17,6 +17,7 @@ Tms::Application.routes.draw do
   resources :users, shallow: true do 
     resources :projects, shallow: true do
       resources :project_references
+      resources :notifications
     end
   end
 

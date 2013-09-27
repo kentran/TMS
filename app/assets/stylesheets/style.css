@@ -7,22 +7,24 @@ h1, h2, h3 {
   text-decoration: none;
 }
 
-h3.content-item {
+.sign-in-container {
+  margin-top: 20px;
+  margin-left: 33%;
+  width: 33%;
+}
+
+.sign-in-container > h2 {
+  margin-left: 35%;
+}
+
+h3.content-item, h2.content-item {
 	border-top: solid 1px #ccc;
   padding: 10px 0 0 15px;
   margin-left: -15px;
 }
 
-h3.content-item:first-child {
+h3.content-item:first-child, h2.content-item:first-child {
   border-top: none;
-}
-
-.navbar .navbar-nav > .active > a {
-  background-color: #eeeeee;
-}
-
-.nav-stacked > .active > a {
-  background-color: #eeeeee;
 }
 
 input[name="commit"].btn, a.btn {
@@ -64,11 +66,11 @@ a[data-method="delete"] {
   width: 33%;
 }
 
-.dropdown-menu > li > a {
+.dropdown-menu#add-sup-dropdown > li > a {
   cursor: pointer;
   font-weight: 500;
 }
 
-.supvervisor-table > tr > td:last-child {
-  margin-left: 20px;
+#error_explanation > h2 {
+  font-size: 16px;
 }

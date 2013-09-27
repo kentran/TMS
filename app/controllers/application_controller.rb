@@ -14,4 +14,20 @@ class ApplicationController < ActionController::Base
     @activity.params = params.inspect
     @activity.save
   end
+
+  def student?
+    if current_user.role == 'Student'
+      return true
+    else
+      return false
+    end
+  end
+
+  def professor?
+    if current_user.role == 'Professor'
+      return true
+    else
+      return false
+    end
+  end
 end

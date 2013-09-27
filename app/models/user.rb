@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_one :roles
   has_and_belongs_to_many :projects
   has_many :project_files
+  has_many :notifications
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -11,7 +12,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :first_name, :last_name, :title, :university, :department, :role
+                  :first_name, :last_name, :title, :university, :department, :role,
+                  :notif_on, :reminder_on, :upload_confirm_on
   # attr_accessible :title, :body
 
   validates :email, presence: true, uniqueness: true
