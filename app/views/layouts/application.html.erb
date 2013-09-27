@@ -9,23 +9,20 @@
 </head>
   
 <body>
-    
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<%= render 'layouts/navigation' %>
+    <%= render 'layouts/navigation' %>
+
+    <% if user_signed_in? %>
+		<div class="row">
+			<div class="col-md-2">
+				<%= render 'layouts/left_sidebar' %>
+			</div>
+			<div class="col-md-10" id="content-col">
+				<%= yield %>
 			</div>
 		</div>
-	</div>
-     
-	<div class="row">
-		<div class="col-md-2">
-			<%= render 'layouts/left_sidebar' %>
-		</div>
-		<div class="col-md-10" id="content-col">
-			<%= yield %>
-		</div>
-	</div>
+	<% else %>
+		<%= yield %>
+	<% end %>
 
 </body>
 </html>

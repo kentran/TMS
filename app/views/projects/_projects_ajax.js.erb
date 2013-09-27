@@ -39,6 +39,7 @@ $(document).ready( function() {
 		},
 		response: function( event, ui ) {
 			$("ul.ui-autocomplete").addClass("dropdown-menu");
+			$("ul.ui-autocomplete").prop("id", "add-sup-dropdown");
 			$("#add-collaborator-btn").prop('disabled', true);
 		},
 		select: function () {

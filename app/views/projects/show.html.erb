@@ -21,27 +21,30 @@
 </p>
 <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
 
-
-<h3 class="content-item">Supervisors</h3>
-<table class="supervisor-table">
-	<% @supervisors.each do |supervisor| %>
-	<tr>
-		<td><%= link_to supervisor.title + " " + supervisor.first_name + " " + supervisor.last_name, supervisor %></td>
-		<td><%= link_to "Remove", "/projects/"+@project.id.to_s+"/remove_collaborator/"+supervisor.id.to_s, 
-		:method => :delete %></td>
-	</tr> 
-	<% end %>
-</table>
-<br/>
-<a id="add-supervisor">Add a Supervisor</a>
-<%= form_tag "/projects/"+@project.id.to_s+"/add_collaborator", class: "form-inline", id: "add-supervisor-form" do %>
-	<div class="form-group single-field">
-		<%= text_field_tag 'collaborator', nil, class: "form-control", placeholder: "Add a supervisor" %>
+<br/><br/>
+<div class="panel panel-success">
+	<div class="panel-heading">Supervisors</div>
+	<table class="table">
+		<% @supervisors.each do |supervisor| %>
+		<tr>
+			<td><%= link_to supervisor.title + " " + supervisor.first_name + " " + supervisor.last_name, supervisor %></td>
+			<td><%= link_to "Remove", "/projects/"+@project.id.to_s+"/remove_collaborator/"+supervisor.id.to_s, 
+			:method => :delete %></td>
+		</tr> 
+		<% end %>
+	</table>
+	<div class="panel-footer">
+		<a id="add-supervisor">Add a Supervisor</a>
+		<%= form_tag "/projects/"+@project.id.to_s+"/add_collaborator", class: "form-inline", id: "add-supervisor-form" do %>
+			<div class="form-group single-field">
+				<%= text_field_tag 'collaborator', nil, class: "form-control", placeholder: "Add a supervisor" %>
+			</div>
+			<div class="form-group"><%= submit_tag "Add", :class => "btn btn-primary btn-inline", 
+				:disabled => true, :id => "add-collaborator-btn" %></div>
+			<div class="form-group" id="cancel-add-supervisor"><a class="btn btn-default btn-inline">Cancel</a></div>
+		<% end %>
 	</div>
-	<div class="form-group"><%= submit_tag "Add", :class => "btn btn-primary btn-inline", 
-		:disabled => true, :id => "add-collaborator-btn" %></div>
-	<div class="form-group" id="cancel-add-supervisor"><a class="btn btn-default btn-inline">Cancel</a></div>
-<% end %>
+</div>
 
 
 <h3 class="content-item">References</h3>

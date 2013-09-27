@@ -1,4 +1,4 @@
-<h2>Create New User</h2>
+<h2 class="content-item">Create New User</h2>
 
 <%= form_for @user, url: {action: "create_new"}, html: {class: "input-group"}  do |f| %>
   <% if flash[:notice] %>
@@ -26,7 +26,7 @@
  
   <%= render 'personal_fields', :f => f %>
 
-  <div><%= f.submit "Create", :class => "btn btn-primary" %> <%= link_to "Back", :back, :class => "btn btn-default" %></div>
+  <div><%= f.submit "Create", :class => "btn btn-primary" %></div>
 <% end %>
 
 <%= render 'import' %>
