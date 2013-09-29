@@ -3,6 +3,7 @@ Tms::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost' }
   config.default_url_options = {:host => "localhost:3000" }
+  Rails.logger = Logger.new(STDOUT)
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
