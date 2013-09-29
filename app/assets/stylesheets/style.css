@@ -43,6 +43,12 @@ a[data-method="delete"] {
   border-bottom: solid 1px #c0c0c0;
 }
 
+table > th {
+  color: #468837;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
 .reference-link
 {
 	color: #428BCA;
@@ -73,4 +79,8 @@ a[data-method="delete"] {
 
 #error_explanation > h2 {
   font-size: 16px;
+}
+
+.reminder-group {
+  padding: 0 5px 0 0;
 }

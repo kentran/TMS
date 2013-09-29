@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926132431) do
+ActiveRecord::Schema.define(:version => 20130929075630) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -81,6 +81,18 @@ ActiveRecord::Schema.define(:version => 20130926132431) do
   end
 
   add_index "projects_users", ["project_id", "user_id"], :name => "by_project_and_user", :unique => true
+
+  create_table "reminders", :force => true do |t|
+    t.string   "recipient"
+    t.date     "date"
+    t.string   "subject"
+    t.integer  "user_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "status",     :default => "Pending"
+  end
+
+  add_index "reminders", ["user_id"], :name => "index_reminders_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

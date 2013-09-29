@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_user.projects.find(params[:id])
-    @project_files = @project.project_files.all
+    @project_files = @project.project_files.order("updated_at DESC").all
     @project_references = @project.project_references.all
     @supervisors = @project.users.all(:conditions => ['role = ?', 'professor'])
   end

@@ -13,4 +13,10 @@ class UserMailer < ActionMailer::Base
   	@project = project
   	mail(to: @user.email, subject: 'Your project is ready for review')
   end
+
+  def reminder_email(reminder)
+    @reminder = reminder
+    @user = User.find_by_email(@reminder.recipient)
+    mail(to: @reminder.recipient, subject: @reminder.subject)
+  end
 end

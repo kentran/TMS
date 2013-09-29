@@ -2,7 +2,7 @@ class UsersController < Devise::RegistrationsController
   load_and_authorize_resource
 
   def index
-    @users = User.all
+    @users = User.order("updated_at DESC").all
   end
 
   def add
@@ -69,7 +69,7 @@ class UsersController < Devise::RegistrationsController
     redirect_to users_path
   end
 
-  def search
+  def search_prof
     # Search for email or name of professor
     term = "%#{params[:term]}%"
     @users = User.all(:conditions => ['(first_name LIKE ? OR last_name LIKE ? OR email LIKE ?) and role = ?', term, term, term, "professor"])
@@ -77,7 +77,31 @@ class UsersController < Devise::RegistrationsController
     # Return a JSON with "label" and "value" as key
     result = Array.new
     @users.each do |user| 
-      label = user.email + " - " + user.first_name + " " + user.last_name
+      label = user.first_name + " " + user.last_name + " - " + user.email
+      item = Hash[ "label" => label, "value" => user.email ]
+      result.push item
+    end
+
+    render :json => result
+  end
+
+  def search_collaborator
+    # Search for email or name of collaborator
+    projects = current_user.projects
+    @users = Array.new
+    projects.each do |project|
+      project.users.each do |user|
+        if user != current_user
+          @users.push user
+        end
+      end
+    end
+    @users.push current_user
+
+    # Return a JSON with "label" and "value" as key
+    result = Array.new
+    @users.each do |user| 
+      label = user.first_name + " " + user.last_name + " - " + user.email
       item = Hash[ "label" => label, "value" => user.email ]
       result.push item
     end

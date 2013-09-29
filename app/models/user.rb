@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_many :project_files
   has_many :notifications
+  has_many :reminders, :order => "reminders.date"
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -19,11 +20,4 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :role, presence: true
 
-  def self.search(search)
-    if search
-      where('first_name LIKE ?', "%#{search}%")
-    else
-      scoped
-    end
-  end
 end

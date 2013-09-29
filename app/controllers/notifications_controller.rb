@@ -17,11 +17,11 @@ class NotificationsController < ApplicationController
 			# if current user is a student, he should send to all professors
 			# create the Notification object through User object
 			# then push the created Notification object to Project object
-			if professor? && recipient.role == 'Student'
+			if professor? && recipient.role == 'Student' && recipient.notif_on == true
 				UserMailer.notification_email(recipient, @project).deliver
 				@notification = current_user.notifications.build(:recipient => recipient.email)
 				@project.notifications << @notification
-			elsif student?
+			elsif student? && recipient.notif_on == true
 				UserMailer.notification_email(recipient, @project).deliver
 				@notification = current_user.notifications.build(:recipient => recipient.email)
 				@project.notifications << @notification

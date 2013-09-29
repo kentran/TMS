@@ -1,0 +1,19 @@
+$(document).ready( function() {
+	$("#reminder_recipient").autocomplete({
+		source: "/search_collaborator",
+		messages: {
+			noResults: "",
+			results: function(count) {}
+		},
+		response: function( event, ui ) {
+			$("ul.ui-autocomplete").addClass("dropdown-menu");
+			$("ul.ui-autocomplete").prop("id", "add-sup-dropdown");
+			$("#add-reminder-btn").prop('disabled', true);
+		},
+		select: function () {
+			$("#add-reminder-btn").prop('disabled', false);
+		}
+	});
+
+	$("#reminder_date").datepicker({ dateFormat: "yy-mm-dd" });
+});

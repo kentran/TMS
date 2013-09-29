@@ -4,14 +4,17 @@
   <div class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 
-<table class="table table-hover">
-  <th>Role</th>
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>Email</th>
-  <th></th>
+<div class="panel panel-success">
+  <table class="table table-hover">
+    <tr class="success">
+      <th>Role</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
 
-  <% @users.each do |user| %>
+    <% @users.each do |user| %>
     <tr>
       <td><%= user.role %></td>
       <td><%= user.first_name %></td>
@@ -20,12 +23,13 @@
       <td>
         <%= link_to "Show", user %>
         <% if can? :edit, user %>
-          | <%= link_to "Edit", edit_user_path(user) %>
+        | <%= link_to "Edit", edit_user_path(user) %>
         <% end %>
         <% if can? :destroy, user %>
-          | <%= link_to "Delete", user, :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
+        | <%= link_to "Delete", user, :data => { :confirm => "Are you sure?" }, :method => :delete %></td>
         <% end %>  
       </td>
     </tr>
-  <% end %>
-</table>
+    <% end %>
+  </table>
+</div>
