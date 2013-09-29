@@ -3,6 +3,7 @@ Tms::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'tms-fyp.herokuapp.com' }
   config.default_url_options = {:host => "tms-fyp.herokuapp.com" }
+  Rails.logger = Logger.new(STDOUT)
   
   # Code is not reloaded between requests
   config.cache_classes = true
