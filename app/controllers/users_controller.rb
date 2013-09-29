@@ -72,7 +72,7 @@ class UsersController < Devise::RegistrationsController
   def search_prof
     # Search for email or name of professor
     term = "%#{params[:term]}%"
-    @users = User.all(:conditions => ['(first_name LIKE ? OR last_name LIKE ? OR email LIKE ?) and role = ?', term, term, term, "professor"])
+    @users = User.all(:conditions => ["(first_name LIKE '?' OR last_name LIKE '?' OR email LIKE '?') and role = ?", term, term, term, "professor"])
 
     # Return a JSON with "label" and "value" as key
     result = Array.new
