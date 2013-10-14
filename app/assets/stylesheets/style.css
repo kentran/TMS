@@ -2,7 +2,7 @@ body {
   padding: 50px 20px 20px 20px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   color: #4682B4;
   text-decoration: none;
 }
@@ -27,26 +27,16 @@ h3.content-item:first-child, h2.content-item:first-child {
   border-top: none;
 }
 
-input[name="commit"].btn, a.btn {
-  margin-top: 10px;
-}
-
-input[name="commit"].btn.btn-inline, a.btn.btn-inline {
-  margin-top: 0;
-}
-
 a[data-method="delete"] {
   color: #DC143C;
 }
 
-.navbar-fixed-top {
-  border-bottom: solid 1px #c0c0c0;
+.prof-panel > .panel-heading > a {
+  color: inherit;
 }
 
-table > th {
-  color: #468837;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+.navbar-fixed-top {
+  border-bottom: solid 1px #c0c0c0;
 }
 
 .reference-link

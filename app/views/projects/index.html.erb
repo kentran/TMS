@@ -1,0 +1,67 @@
+<% if flash[:notice] %>
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= flash[:notice] %>
+	</div>
+<% elsif flash[:alert] %>
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= flash[:alert] %>
+	</div>
+<% end %>
+
+<br/><br/>
+<% @students.each do |student| %>
+	<div class="panel panel-success prof-panel">
+		<div class="panel-heading">
+			<%= link_to student.first_name + " " + student.last_name, student %> - 
+			<%= link_to student.projects[0].title, student.projects[0] %>
+		</div>
+
+		<ul class="nav nav-tabs" id="prof-home-tab">
+			<li class="active"><a href="#files-submitted-<%= student.id %>">Files Submitted</a></li>
+			<li><a href="#my-files-<%= student.id %>">My Files</a></li>
+			<li><a href="#upload-<%= student.id %>">Upload</a></li>
+		</ul>
+	
+		<br/>
+		<div class="tab-content">
+			<div class="tab-pane active" id="files-submitted-<%= student.id %>">
+				<table class="table table-hover">
+					<% @student_files[student].each do |project_file| %>
+						<tr id="project_file_<%= project_file.id %>">
+							<%= render "project_files/project_file", :project_file => project_file %>
+						</tr> 
+					<% end %>
+				</table> 
+			</div>
+
+			<div class="tab-pane" id="my-files-<%= student.id %>">
+				<table class="table table-hover">
+					<% @my_files[student].each do |project_file| %>
+						<tr id="project_file_<%= project_file.id %>">
+							<%= render "project_files/project_file", :project_file => project_file %>
+						</tr> 
+					<% end %>
+				</table> 
+			</div>
+
+			<div class="tab-pane" id="upload-<%= student.id %>">
+				<div class="panel-body">
+					<%= form_tag (student.projects[0]), multipart: true do %>
+						<%= file_field_tag 'file', :require => true %>
+						<%= hidden_field_tag(:user_id, current_user.id) %>
+						<%= hidden_field_tag(:project_id, student.projects[0].id) %>
+						<br/>
+						<%= submit_tag ("Upload"), :class => "btn btn-primary" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel-footer">
+			<%= link_to "Send Notification", project_notifications_path(student.projects[0]), :method => :post,
+				:class => "btn btn-success", :data => {:confirm => "Are you sure?"} %>
+		</div>
+	</div>
+<% end %>

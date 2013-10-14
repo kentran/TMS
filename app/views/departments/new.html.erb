@@ -1,0 +1,15 @@
+<h2>Add a Department</h2>
+
+<% if @department.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% for message in @department.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %> 
+
+<%= form_for ([@university, @university.departments.build]), html: {class: "form-horizontal"} do |f| %>
+  <% render 'form_fields', :f => f %>
+<% end %>

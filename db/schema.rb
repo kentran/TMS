@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130929075630) do
+ActiveRecord::Schema.define(:version => 20131014142846) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -25,12 +25,24 @@ ActiveRecord::Schema.define(:version => 20130929075630) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.integer  "university_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "departments", ["university_id"], :name => "index_departments_on_university_id"
+
   create_table "notifications", :force => true do |t|
     t.string   "recipient"
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "sender"
+    t.boolean  "is_view",    :default => false
+    t.string   "content",    :default => "My files are ready"
   end
 
   add_index "notifications", ["project_id"], :name => "index_notifications_on_project_id"
@@ -93,6 +105,13 @@ ActiveRecord::Schema.define(:version => 20130929075630) do
   end
 
   add_index "reminders", ["user_id"], :name => "index_reminders_on_user_id"
+
+  create_table "universities", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

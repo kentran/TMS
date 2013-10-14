@@ -4,6 +4,8 @@
   <div><%= label_tag :role %>
     <%= select_tag :role, options_for_select([['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %></div>
   <div><%= text_area_tag 'email_list', nil, size: '50x4', class: 'form-control', placeholder: 'Enter email addresses, 1 per line'  %></div>
+
+  <br/>
   <div><%= submit_tag ('Import'), :class => 'btn btn-primary'  %></div>
 <% end %>
 

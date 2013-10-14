@@ -6,23 +6,21 @@
   <ul class="nav nav-tabs navbar-nav">
     <% if user_signed_in? %>
       <%= nav_link 'Home', home_index_path %>
+      <%= nav_link 'New Notifications', user_new_notifications_path(current_user) %>
       <% if can? :read, User, :index => true %>
         <%= nav_link 'Manage Users', users_path %>
       <% end %> 
-      <% if can? :add, User %>
-        <%= nav_link 'Create User', add_user_path %>
+      <% if can? :manage, University %>
+        <%= nav_link 'Manage Universities', universities_path %>
       <% end %>
-      
-      <li>
-        <a data-toggle="dropdown" href="#">Project</a>
-        <ul class="dropdown-menu" role="menu" aira-labelledby="dLabel">
-          <% if can? :create, Project %>
-            <%= nav_link 'New Project', new_user_project_path(current_user) %>
-          <% end %>
-        </ul>
-      </li>
 
+      <li><a href="#">Timeline</a></li>
+      <%= nav_link 'Notification Center', user_notifications_path(current_user) %>
       <%= nav_link 'Reminders', user_reminders_path(current_user) %>
+      <% if current_user.role == 'Student' %>
+        <li><a href="#">Formatting Guide</a></li>
+      <% end %>
+      <li><a href="#">Help</a></li>
     <% end %>
   </ul>
   <ul class="nav navbar-nav pull-right">

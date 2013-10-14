@@ -1,0 +1,27 @@
+<h2>Manage Universities</h2>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="panel panel-success">
+  <table class="table table-hover">
+    <tr class="success">
+      <th>University</th>
+      <th>Description</th>
+      <th><%= link_to 'Add University', new_university_path %></th>
+    </tr>
+
+    <% @universities.each do |university| %>
+    <tr>
+      <td><%= university.name %></td>
+      <td><%= university.description %></td>
+      <td>
+        <%= link_to "Show", university %> |
+        <%= link_to "Edit", edit_university_path(university) %> |
+        <%= link_to "Delete", university, :data => { :confirm => "Are you sure?" }, :method => :delete %></td> 
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

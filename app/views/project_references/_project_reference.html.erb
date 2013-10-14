@@ -8,9 +8,11 @@
 		</h5>
 		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" 
 			href="#reference-<%= project_reference.id %>">Show</a> | 
-		<%= link_to "Link", project_reference.reference_url %> | 
-		<%= link_to "Edit", edit_project_reference_path(project_reference), remote: true %> |  
-		<%= link_to "Delete", project_reference, :data => { :confirm => "Are you sure?" }, :method => :delete %>
+		<%= link_to "Link", project_reference.reference_url %>
+		<% if can? :edit, ProjectReference %>
+			| <%= link_to "Edit", edit_project_reference_path(project_reference), remote: true %> |  
+			<%= link_to "Delete", project_reference, :data => { :confirm => "Are you sure?" }, :method => :delete %>
+		<% end %>
 	</div>
 
 	<div id="reference-<%= project_reference.id %>" class="panel-collapse collapse">

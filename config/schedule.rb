@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 30.seconds do
-	runner "Reminder.send_scheduled_email"
+every 1.days do
+	rake "reminder:send_reminder"
 end

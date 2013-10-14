@@ -1,0 +1,3 @@
+/* Replace the file row with the updated file row */
+var file_row = $("<%= escape_javascript(render @project_file) %>");
+$("#project_file_<%= @project_file.id %>").html(file_row);

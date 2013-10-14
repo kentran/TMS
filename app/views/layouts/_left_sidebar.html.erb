@@ -1,15 +1,7 @@
 <% if user_signed_in? %>
-  <div class="sidebar-nav-fixed">
-    <ul class="nav nav-pills nav-stacked">
-      <%= nav_link 'Project List', root_path %>
-      <% if current_user.role == 'Student' %>
-      	<%= nav_link 'Notification', project_notifications_path(current_user.projects[0]) %>
-      <% end %>
-	  <li><a href="#">link</a></li>
-	  <li><a href="#">link</a></li>
-	  <li><a href="#">link</a></li>
-	  <li><a href="#">link</a></li>
-	  <li><a href="#">link</a></li>
-    </ul>
-  </div>
+	<div class="sidebar-nav-fixed">
+		<!-- <ul id="sidebar" class="nav nav-pills nav-stacked"> -->
+		<ul id="sidebar" class="nav nav-list bs-docs-sidenav affix">
+		</ul>
+	</div>
 <% end %>

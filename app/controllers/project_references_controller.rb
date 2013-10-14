@@ -1,4 +1,6 @@
 class ProjectReferencesController < ApplicationController
+  load_and_authorize_resource
+  
   def create
     @project = Project.find(params[:project_id])
     @project_reference = @project.project_references.create(params[:project_reference])

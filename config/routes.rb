@@ -15,17 +15,27 @@ Tms::Application.routes.draw do
     get "/search_collaborator" => "users#search_collaborator"
   end
 
+  resources :universities do
+    resources :departments
+  end
+
   resources :users, shallow: true do 
     resources :projects, shallow: true do
       resources :project_references
-      resources :notifications
+      resources :project_files
     end
 
     resources :reminders
   end
 
+  get "/users/:user_id/new_notifications" => "notifications#index_new", :as => "user_new_notifications"
+  get "/users/:user_id/notifications" => "notifications#index", :as => "user_notifications"
+  post "/projects/:project_id/notifications" => "notifications#create", :as => "project_notifications"
+
+  #get "/project_files/:id" => "project_files#edit", :as => "project_file" 
+  #post "/project_files/:id" => "project_files#update", :as => "project_file"
   get "/download" => "projects#download"
-  post "/projects/:id" => "projects#upload"
+  post "/projects/:id" => "projects#upload", :as => "file_upload"
   delete "/project_files/:id" => "project_files#destroy", :as => "project_file"
 
   post "/projects/:id/add_collaborator" => "projects#add_collaborator", :as => "add_collaborator"

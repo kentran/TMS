@@ -1,6 +1,7 @@
 class RemindersController < ApplicationController
 	def index
-		@reminders = current_user.reminders
+		@pending_reminders = current_user.reminders.select { |reminder| reminder.status == 'Pending' }
+		@sent_reminders = current_user.reminders.select { |reminder| reminder.status == 'Sent' }
 	end
 
 	def create

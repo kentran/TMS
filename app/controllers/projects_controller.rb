@@ -1,6 +1,33 @@
 class ProjectsController < ApplicationController
   load_and_authorize_resource
 
+  def index 
+    # Get all projects
+    @projects = current_user.projects
+    
+    # Get all the students
+    @students = Array.new
+    @projects.each do |project|
+      project.users.each do |user|
+        if user.role == 'Student'
+          @students.push user
+        end
+      end
+    end
+
+    
+    # Get all the files of the students, and professors file accordingly
+    @student_files = Hash.new
+    @my_files = Hash.new
+    @students.each do |student|
+      @student_files[student] = student.project_files.order("updated_at DESC").all(
+        :conditions => ["project_files.primary = ?", true])
+
+      @my_files[student] = current_user.project_files.order("updated_at DESC").all(
+        :conditions => ["project_files.project_id = ?", student.projects[0].id])
+    end
+  end
+
   def new
     @project = current_user.projects.build
   end
@@ -36,6 +63,17 @@ class ProjectsController < ApplicationController
     @project_files = @project.project_files.order("updated_at DESC").all
     @project_references = @project.project_references.all
     @supervisors = @project.users.all(:conditions => ['role = ?', 'professor'])
+
+    @my_files = current_user.project_files.order("updated_at DESC").all
+    @file_groups = Hash.new
+    @project.users.each do |user|
+      # Get the file of all professors if current user is a student
+      # or get the file of the student when current user is a professor
+      if (user != current_user && student?) || (user != current_user && professor? && user.role != 'Professor')                                     
+        @file_groups[user] = user.project_files.order("updated_at DESC").all(
+          :conditions => ["project_files.primary = ? AND project_files.project_id = ?", true, @project.id])               
+      end
+    end
   end
 
   def upload
@@ -60,7 +98,7 @@ class ProjectsController < ApplicationController
 
     if @project_file.save
       record_activity("uploaded " + file_name)
-      redirect_to project_path(@project), :notice => "File uploaded successfully"
+      redirect_to :back, :notice => "File uploaded successfully"
     else
       record_activity("upload failed " + file_name)
       render 'show', :alert => "File info is failed to save"

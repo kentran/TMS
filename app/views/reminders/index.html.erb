@@ -6,9 +6,15 @@
 
 <h3 class="content-item">Reminders</h3>
 <% if flash[:notice] %>
-	<div class="alert alert-success"><%= flash[:notice] %></div>
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= flash[:notice] %>
+	</div>
 <% elsif flash[:alert] %>
-	<div class="alert alert-danger"><%= flash[:alert] %></div>
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= flash[:alert] %>
+	</div>
 <% end %>
 
 <%= form_for :reminder, html: {:class => "form-inline", :role => "form"} do |f| %>
@@ -39,13 +45,34 @@
 			<th></th>
 		</tr>
 
-		<% @reminders.each do |reminder| %>
-		<tr id="reminder-<%= reminder.id %>">
-			<td><%= reminder.subject %></td>
-			<td><%= reminder.recipient %></td>
-			<td><%= reminder.date %></td>
-			<td><%= reminder.status %></td>
-			<td><%= link_to "Remove", reminder, :method => :delete %></td>
+		<% @pending_reminders.each do |pending_reminder| %>
+		<tr id="reminder-<%= pending_reminder.id %>">
+			<td><%= pending_reminder.subject %></td>
+			<td><%= pending_reminder.recipient %></td>
+			<td><%= pending_reminder.date %></td>
+			<td><%= pending_reminder.status %></td>
+			<td><%= link_to "Remove", pending_reminder, :method => :delete %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>
+
+<h3>Sent Reminders</h3>
+<div class="panel panel-warning">
+	<table class="table table-hover">
+		<tr class="warning">
+			<th>Subject</th>
+			<th>Recipient</th>
+			<th>Schedule on</th>
+			<th>Status</th>
+		</tr>
+
+		<% @sent_reminders.each do |sent_reminder| %>
+		<tr id="reminder-<%= sent_reminder.id %>">
+			<td><%= sent_reminder.subject %></td>
+			<td><%= sent_reminder.recipient %></td>
+			<td><%= sent_reminder.date %></td>
+			<td><%= sent_reminder.status %></td>
 		</tr>
 		<% end %>
 	</table>

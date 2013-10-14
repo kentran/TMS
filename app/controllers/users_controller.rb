@@ -1,5 +1,5 @@
 class UsersController < Devise::RegistrationsController
-  load_and_authorize_resource
+  load_and_authorize_resource :only => [:index, :destroy, :create_new, :batch_create]
 
   def index
     @users = User.order("updated_at DESC").all
@@ -22,7 +22,11 @@ class UsersController < Devise::RegistrationsController
 
     if @user.update_attributes(params[:user])
       record_activity("updated user details: " + @user.id.to_s)
-      redirect_to user_path
+      if can? :read, User, :index => true
+        redirect_to user_path, :notice => "User updated successfully"
+      else
+        redirect_to :back, :notice => "User updated successfully"
+      end
     else
       render 'edit'
     end

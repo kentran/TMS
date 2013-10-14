@@ -4,6 +4,8 @@
   <div class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 
+
+
 <div class="panel panel-success">
   <table class="table table-hover">
     <tr class="success">
@@ -11,7 +13,11 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
-      <th></th>
+      <th>
+        <% if can? :add, User %>
+          <%= link_to 'Add User', add_user_path %>
+        <% end %>
+      </th>
     </tr>
 
     <% @users.each do |user| %>
