@@ -2,7 +2,11 @@ class UsersController < Devise::RegistrationsController
   load_and_authorize_resource :only => [:index, :destroy, :create_new, :batch_create]
 
   def index
-    @users = User.order("updated_at DESC").all
+    if admin?
+      @users = User.order("updated_at DESC").all
+    else
+      @users = current_user.university.users
+    end
   end
 
   def add
@@ -19,8 +23,12 @@ class UsersController < Devise::RegistrationsController
 
   def update
     @user = User.find(params[:id])
+    @university = University.find(params[:university])
+    @department = Department.find(params[:department])
 
     if @user.update_attributes(params[:user])
+      @university.users << @user
+      @department.users << @user
       record_activity("updated user details: " + @user.id.to_s)
       if can? :read, User, :index => true
         redirect_to user_path, :notice => "User updated successfully"
@@ -42,8 +50,12 @@ class UsersController < Devise::RegistrationsController
 
   def create_new
     @user = User.new(params[:user])
+    @university = University.find(params[:university])
+    @department = University.find(params[:department])
     
     if @user.save
+      @university.users << @user
+      @department.users << @user
       record_activity("created new user: " + @user.email)
       # Send an email notification to the user
       UserMailer.welcome_email(@user).deliver

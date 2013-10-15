@@ -8,16 +8,23 @@
 <div><%= f.label :title %><br />
 <%= f.text_field :title, :class => "form-control" %></div>
 
-<div><%= f.label :university %><br />
-<%= f.text_field :university, :class => "form-control" %></div>
-
-<div><%= f.label :department %><br />
-<%= f.text_field :department, :class => "form-control" %></div>
-
 <div><%= f.label :role %>
 <% if can? :assign_super_admin, current_user %>
   <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
 <% else %>
   <%= f.select(:role, [['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
+<% end %>
+<br/>
+<% if can? :manage, University %>
+  <div><%= f.label :university %>	
+  	<%= select_tag(:university, options_from_collection_for_select(University.all, :id, :name)) %>
+  </div>
+<% else %>
+	<%= hidden_field_tag(:university, current_user.university.id) %>
+<% end %>
+<% if can? :manage, Department %>
+  <div><%= f.label :department %>	
+  	<%= select_tag(:department, options_from_collection_for_select(current_user.university.departments.all, :id, :name)) %>
+  </div>
 <% end %>
 </div>

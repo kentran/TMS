@@ -6,6 +6,14 @@
 </div>
 
 <div class="form-group">
+  <%= f.label :format, :class => "col-lg-2 control-label" %>
+  <div class="col-lg-10">
+    <%= f.text_area :format, :class => "form-control",
+    	:placeholder => "Use plain text or HTML" %>
+  </div>
+</div>
+
+<div class="form-group">
   <div class="col-lg-offset-2 col-lg-10">
     <%= f.submit 'Submit', :class => "btn btn-primary" %>
   </div>

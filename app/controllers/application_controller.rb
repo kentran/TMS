@@ -30,4 +30,12 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
+
+  def admin?
+    if current_user.role == 'Admin'
+      return true
+    else
+      return false
+    end
+  end
 end

@@ -1,4 +1,6 @@
 class Department < ActiveRecord::Base
   belongs_to :university
-  attr_accessible :name
+  has_many :users
+
+  attr_accessible :name, :format
 end

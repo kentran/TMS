@@ -22,13 +22,15 @@
 
 <p>
   <strong>University:</strong>
-  <%= @user.university %>
+  <%= @user.university.name %>
 </p>
 
+<% if @user.department != nil %>
 <p>
   <strong>Department</strong>
-  <%= @user.department %>
+  <%= @user.department.name %>
 </p>
+<% end %>
 
 <%= link_to "Back", users_path %>
 <% if can? :edit, @user %>

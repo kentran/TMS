@@ -10,6 +10,9 @@
       <% if can? :read, User, :index => true %>
         <%= nav_link 'Manage Users', users_path %>
       <% end %> 
+      <% if current_user.role == 'Manager' %>
+        <%= nav_link 'Manage Project Guidelines', university_departments_path(current_user.university) %>
+      <% end %>
       <% if can? :manage, University %>
         <%= nav_link 'Manage Universities', universities_path %>
       <% end %>
@@ -18,11 +21,12 @@
       <%= nav_link 'Notification Center', user_notifications_path(current_user) %>
       <%= nav_link 'Reminders', user_reminders_path(current_user) %>
       <% if current_user.role == 'Student' %>
-        <li><a href="#">Formatting Guide</a></li>
+        <%= nav_link 'Project Guidelines', university_department_path(current_user.university_id, current_user.department_id) %>
       <% end %>
       <li><a href="#">Help</a></li>
     <% end %>
   </ul>
+  
   <ul class="nav navbar-nav pull-right">
     <% if user_signed_in? %>
       <%= nav_link current_user.first_name + " " + current_user.last_name, edit_user_registration_path %>

@@ -28,6 +28,7 @@ class Ability
       can :add, User
       can :create_new, User
       can :batch_create, User
+      can :manage, Department
     end
 
   end

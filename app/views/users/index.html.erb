@@ -1,10 +1,11 @@
 <h2>Manage Users</h2>
 
 <% if flash[:notice] %>
-  <div class="alert alert-danger"><%= flash[:notice] %></div>
+  <div class="alert alert-danger alert-dismissable">
+    <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+    <%= flash[:notice] %>
+  </div>
 <% end %>
-
-
 
 <div class="panel panel-success">
   <table class="table table-hover">
@@ -13,6 +14,9 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+      <% if can? :read, University %>
+        <th>University</th>
+      <% end %>
       <th>
         <% if can? :add, User %>
           <%= link_to 'Add User', add_user_path %>
@@ -26,6 +30,9 @@
       <td><%= user.first_name %></td>
       <td><%= user.last_name %></td>
       <td><%= user.email %></td>
+      <% if can? :read, University %>
+        <td><%= link_to user.university.name, university_path(user.university.id) %></td>
+      <% end %>      
       <td>
         <%= link_to "Show", user %>
         <% if can? :edit, user %>

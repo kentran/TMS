@@ -1,0 +1,26 @@
+<h2 class="content-item">Departments</h2>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="panel panel-success">
+  <table class="table table-hover">
+    <tr class="success">
+      <th>Department</th>
+      <th><%= link_to "Add Department", new_university_department_path(@university) %></th>
+    </tr>
+
+    <% @departments.each do |department| %>
+    <tr>
+      <td><%= department.name %></td>
+      <td>
+        <%= link_to "View", university_department_path(@university, department) %> |
+        <%= link_to "Edit", edit_university_department_path(@university, department) %> |
+        <%= link_to "Delete", university_department_path(@university, department), 
+          :data => { :confirm => "Are you sure?" }, :method => :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

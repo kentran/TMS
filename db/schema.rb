@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014142846) do
+ActiveRecord::Schema.define(:version => 20131015075500) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131014142846) do
     t.integer  "university_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.text     "format"
   end
 
   add_index "departments", ["university_id"], :name => "index_departments_on_university_id"
@@ -127,18 +128,19 @@ ActiveRecord::Schema.define(:version => 20131014142846) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "title"
-    t.string   "university"
     t.integer  "university_id"
-    t.string   "department"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "role"
     t.boolean  "notif_on",               :default => true,  :null => false
     t.boolean  "reminder_on",            :default => true,  :null => false
     t.boolean  "upload_confirm_on",      :default => false, :null => false
+    t.integer  "department_id"
   end
 
+  add_index "users", ["department_id"], :name => "index_users_on_department_id"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["university_id"], :name => "index_users_on_university_id"
 
 end

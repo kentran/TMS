@@ -1,4 +1,9 @@
 class DepartmentsController < ApplicationController
+	def index
+		@university = University.find(params[:university_id])
+		@departments = @university.departments
+	end
+
 	def new
 		@university = University.find(params[:university_id])
 		@department = @university.departments.build
@@ -7,7 +12,13 @@ class DepartmentsController < ApplicationController
 	def create
 		@university = University.find(params[:university_id])
 		@department = @university.departments.create(params[:department])
-		redirect_to university_path(@university)
+		redirect_to university_departments_path(@university)
+	end
+
+	def show
+		@university = University.find(params[:university_id])
+		@department = @university.departments.find(params[:id])
+		@departments = @university.departments
 	end
 
 	def edit
@@ -19,7 +30,7 @@ class DepartmentsController < ApplicationController
 		@university = University.find(params[:university_id])
 		@department = @university.departments.find(params[:id])
 		@department.update_attributes(params[:department])
-		redirect_to university_path(@university)
+		redirect_to university_departments_path(@university)
 	end
 
 	def destroy
