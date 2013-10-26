@@ -32,8 +32,7 @@ Tms::Application.routes.draw do
   get "/users/:user_id/notifications" => "notifications#index", :as => "user_notifications"
   post "/projects/:project_id/notifications" => "notifications#create", :as => "project_notifications"
 
-  #get "/project_files/:id" => "project_files#edit", :as => "project_file" 
-  #post "/project_files/:id" => "project_files#update", :as => "project_file"
+  get "/manage_projects" => "projects#manager_index", :as => "manager_home"
   get "/download" => "projects#download"
   post "/projects/:id" => "projects#upload", :as => "file_upload"
   delete "/project_files/:id" => "project_files#destroy", :as => "project_file"

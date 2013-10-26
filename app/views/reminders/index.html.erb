@@ -4,7 +4,7 @@
 	</script>
 <% end %>
 
-<h3 class="content-item">Reminders</h3>
+<h2 id="reminder-header" class="content-item">Reminders</h2>
 <% if flash[:notice] %>
 	<div class="alert alert-success alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -57,7 +57,9 @@
 	</table>
 </div>
 
-<h3>Sent Reminders</h3>
+<hr>
+
+<h2 id="sent-reminder" class="content-item">Sent Reminders</h2>
 <div class="panel panel-warning">
 	<table class="table table-hover">
 		<tr class="warning">

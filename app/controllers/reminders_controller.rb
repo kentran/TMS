@@ -1,9 +1,25 @@
 class RemindersController < ApplicationController
+	#
+	# RemindersController:index
+	#
+	# Handle GET request to route /users/:user_id/reminders
+	# Parameters: 
+	#
+	# Return all pending and sent Reminder objects to reminders/index.html.erb
+	#
 	def index
 		@pending_reminders = current_user.reminders.select { |reminder| reminder.status == 'Pending' }
 		@sent_reminders = current_user.reminders.select { |reminder| reminder.status == 'Sent' }
 	end
 
+	#
+	# RemindersController:create
+	#
+	# Handle POST request to route /users/:user_id/reminders
+	# Parameters: reminder[]
+	#
+	# Create a new Reminder and redirect to /users/:user_id/reminders
+	#
 	def create
 	    @reminder = current_user.reminders.create(params[:reminder])
 	    
@@ -15,19 +31,14 @@ class RemindersController < ApplicationController
 	    end
 	end
 
-	def edit
-		@reminder = Reminder.find(params[:id])
-
-		respond_to do |format|
-			format.js {}
-			format.json { render json: @reminder }
-		end
-	end
-
-	def update
-
-	end
-
+	#
+	# RemindersController:destroy
+	#
+	# Handle PUT request to route /users/:user_id/reminders
+	# Parameters: id (reminder id)
+	#
+	# Delete a Reminder specified by id and redirect to /users/:user_id/reminders
+	#
 	def destroy
 		@reminder = Reminder.find(params[:id])
 		@reminder.destroy

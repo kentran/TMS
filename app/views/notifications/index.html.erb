@@ -1,4 +1,4 @@
-<h3 class="content-item">Notification Center</h3>
+<h1 class="content-item">Notification Center</h1>
 <% if flash[:notice] %>
 	<div class="alert alert-success alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -11,7 +11,7 @@
 	</div>
 <% end %>
 
-<h4>My Preference</h4>
+<h2 id="my-preference" class="content-item">My Preference</h2>
 <%= form_for current_user, html: { :class => "form-horizontal" } do |f| %>
   <div class="form-group">
   	<label class="col-lg-1 control-label"></label>
@@ -41,17 +41,46 @@
   </div>
 <% end %>
 
-<h4>My Notifications</h4>
+<hr>
+
+<h2 id="new-notifications" class="content-item">New Notifications</h2>
+<div class="panel panel-success">
+  <table class="table table-hover">
+    <tr class="success">
+      <th>From</th>
+      <th>Message</th>
+      <th>Sent on</th>
+    </tr>
+    <% @notifications.each do |notification| %>
+    <tr <% unless notification.is_view %>class="warning"<% end %> >
+      <td>
+        <% unless notification.is_view %>
+          <span class="badge">new</span>
+        <% end %>
+        <%= notification.sender %>
+      </td>
+      <td><%= notification.content %></td>
+      <td><%= notification.created_at %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<hr>
+
+<h2 id="sent-notifications" class="content-item">Sent Notifications</h2>
 <div class="panel panel-success">
 	<table class="table table-hover">
 		<tr class="success">
 			<th>To</th>
+      <th>Message</th>
 			<th>Sent on</th>
 		</tr>
 
-		<% @notifications.each do |notification| %>
+		<% @my_notifications.each do |notification| %>
 		<tr>
 			<td><%= notification.recipient %></td>
+      <td><%= notification.content %></td>
 			<td><%= notification.created_at %></td>
 		</tr>
 		<% end %>

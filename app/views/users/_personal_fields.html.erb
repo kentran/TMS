@@ -8,10 +8,12 @@
 <div><%= f.label :title %><br />
 <%= f.text_field :title, :class => "form-control" %></div>
 
-<div><%= f.label :role %>
+<div>
 <% if can? :assign_super_admin, current_user %>
+  <%= f.label :role %>
   <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
-<% else %>
+<% elsif can? :write, User %>
+  <%= f.label :role %>
   <%= f.select(:role, [['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
 <% end %>
 <br/>

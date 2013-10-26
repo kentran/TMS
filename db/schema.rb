@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131015075500) do
+ActiveRecord::Schema.define(:version => 20131026144927) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20131015075500) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.text     "format"
+    t.date     "deadline"
   end
 
   add_index "departments", ["university_id"], :name => "index_departments_on_university_id"
@@ -80,13 +81,11 @@ ActiveRecord::Schema.define(:version => 20131015075500) do
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "abstract"
-    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.datetime "deadline"
+    t.string   "version"
   end
-
-  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "projects_users", :force => true do |t|
     t.integer "project_id"

@@ -1,24 +1,38 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav id="tms-navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <%= link_to "TMS", root_path, :class => 'navbar-brand' %>
   </div>
 
   <ul class="nav nav-tabs navbar-nav">
     <% if user_signed_in? %>
-      <%= nav_link 'Home', home_index_path %>
-      <%= nav_link 'New Notifications', user_new_notifications_path(current_user) %>
+      <% if current_user.role == 'Student' %>
+        <%= nav_link 'Home', project_path(current_user.projects[0]) %>
+      <% elsif current_user.role == 'Professor' %>
+        <%= nav_link 'Home', user_projects_path(current_user) %>
+      <% elsif current_user.role == 'Manager' %>
+        <%= nav_link 'Home', manager_home_path %>
+      <% end %>
+
       <% if can? :read, User, :index => true %>
         <%= nav_link 'Manage Users', users_path %>
       <% end %> 
+      
       <% if current_user.role == 'Manager' %>
-        <%= nav_link 'Manage Project Guidelines', university_departments_path(current_user.university) %>
+        <%= nav_link 'Manage Departments', university_departments_path(current_user.university) %>
       <% end %>
+
       <% if can? :manage, University %>
         <%= nav_link 'Manage Universities', universities_path %>
       <% end %>
 
-      <li><a href="#">Timeline</a></li>
-      <%= nav_link 'Notification Center', user_notifications_path(current_user) %>
+      <% if current_user.role == 'Student' %>
+        <li><a href="#">Timeline</a></li>
+      <% end %>
+
+      <% if current_user.role == 'Student' || current_user.role == 'Professor' %>
+        <%= nav_link 'Notification Center', user_notifications_path(current_user) %>
+      <% end %>
+      
       <%= nav_link 'Reminders', user_reminders_path(current_user) %>
       <% if current_user.role == 'Student' %>
         <%= nav_link 'Project Guidelines', university_department_path(current_user.university_id, current_user.department_id) %>

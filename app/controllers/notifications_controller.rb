@@ -1,29 +1,47 @@
 class NotificationsController < ApplicationController
+	
+	#
+	# NotificationsController:index
+	#
+	# Handle GET request to route /users/:user_id/notifications
+	# Parameters:
+	#
+	# Return all Notifications that are sent to and from the current_user
+	# to notifications/index.html.erb
+	#
 	def index
-		@notifications = current_user.notifications
-	end
+		# All the notifications sent from current_user
+		@my_notifications = current_user.notifications
 
-	# Get all the notificaitons sent to current_user
-	def index_new
 	    # First get all the notifications sent to current user
 	    # from all projects related to the current user
 	    projects = current_user.projects
 	    @notifications = Array.new
-	    projects.each do |project|
-	    	project.notifications.each do |notification|
-	    		if notification.recipient == current_user.email
-	    			if notification.is_view == false
+	    projects.each do |project|											# find all the project current_user linked to
+	    	project.notifications.each do |notification|					# find all the notifications of each project
+	    		if notification.recipient == current_user.email 			# get the notification sent to current_user
+	    			if notification.is_view == false						# if the notification is not viewed
 	    				notification.update_attributes(:is_view => true)	# update the notification view to true
 	    				notification.assign_attributes(:is_view => false)	# but reset it to false before pushing to array
 	    			end
-	    			@notifications.push notification
+	    			@notifications.push notification 						# the users will view this object
 	    		end
 	    	end
 	    end
 
+	    # Sort the notifications by created date
 	    @notifications = @notifications.sort_by! {|obj| obj.created_at}.reverse
 	end
 
+	#
+	# NotificationsController:create
+	#
+	# Handle POST request to route /projects/:project_id/notifications
+	# Parameters:
+	#
+	# Sent a standard notification to the other peers (professors or students)
+	# Create a Notfication objects to keep track of the activities
+	#
 	def create
 		@project = Project.find(params[:project_id])
 		@recipients = @project.users

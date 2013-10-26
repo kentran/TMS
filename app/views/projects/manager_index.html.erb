@@ -1,0 +1,49 @@
+<% if flash[:notice] %>
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= flash[:notice] %>
+	</div>
+<% elsif flash[:alert] %>
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<%= flash[:alert] %>
+	</div>
+<% end %>
+
+<h1 id="all-projects" class="content-item">Projects List</h1>
+<% @department_students.each do |department, students| %>
+<h2 id="<%= department.name %>" class="content-item"><%= department.name %></h2>
+	<div class="panel panel-success prof-panel">
+		<div class="panel-heading"><%= department.name %> Projects</div>
+
+		<table class="table">
+			<th>Student</th>
+			<th>Project</th>
+			<th>Deadline</th>
+			<% if Time.now.to_date > department.deadline %>
+				<th>Final Submission</th>
+			<% end %>
+
+			<% students.each do |student| %>
+			<tr>
+				<td><%= link_to student.first_name + " " + student.last_name, user_path(student) %></td>
+				<% if student.projects[0] != nil %>
+					<td><%= student.projects[0].title %></td>
+				<% else %>
+					<td><i>Project is not created</i></td>
+				<% end %>
+				<td><%= department.deadline %></td>
+				<% if Time.now.to_date > department.deadline %>
+					<td>
+					<% student.project_files.take_while{ |o| o.primary == true }.each do |project_file| %>
+						<%= link_to project_file.original_file_name, :action => :download, 
+							:file_name => project_file.file_name, :controller => "projects" %><br>
+					<% end %>
+					</td>
+				<% end %>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+<hr>
+<% end %>

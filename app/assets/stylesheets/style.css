@@ -17,10 +17,16 @@ h1, h2, h3, h4 {
   margin-left: 35%;
 }
 
-h3.content-item, h2.content-item {
-	border-top: solid 1px #ccc;
-  padding: 10px 0 0 15px;
+hr {
+  border-top: solid 1px #ccc;
   margin-left: -15px;
+}
+
+h3.content-item, h2.content-item {
+  padding-left: 15px;
+  margin-left: -15px;
+  padding-top: 70px;
+  margin-top: -70px;
 }
 
 h3.content-item:first-child, h2.content-item:first-child {
@@ -39,6 +45,10 @@ a[data-method="delete"] {
   border-bottom: solid 1px #c0c0c0;
 }
 
+#tms-navbar > ul.nav-tabs {
+  border: 0;
+}
+
 .reference-link
 {
 	color: #428BCA;
@@ -54,8 +64,14 @@ a[data-method="delete"] {
     width: 15%;
 }
 
+#sidebar > li.active {
+  font-weight: 700;
+  font-size: 15px;
+}
+
 #content-col {
 	border-left: 1px solid #ccc;
+  padding-top: 20px;
 }
 
 .form-group.single-field {

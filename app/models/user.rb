@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_one :roles
   has_and_belongs_to_many :projects
   has_many :project_files
   has_many :notifications

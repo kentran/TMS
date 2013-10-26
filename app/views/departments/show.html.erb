@@ -1,23 +1,21 @@
-<h2 class="content-item">Project Guidelines</h2>
+<h2 id="project-guidelines" class="content-item">Project Guidelines</h2>
 
 <h3><%= @department.name %></h3>
 <div><%= raw(simple_format(@department.format)) %></div>
 
-<h2 class="content-item">Other Deparment Guidelines</h2>
+<h2 id="other-guidelines" class="content-item">Other Guidelines</h2>
 <div class="panel panel-success">
   <table class="table table-hover">
     <tr class="success">
       <th>Department</th>
-      <th><%= link_to "Add Department", new_university_department_path(@university) %></th>
+      <th></th>
     </tr>
 
     <% @departments.each do |department| %>
       <% if department != @department %>
         <tr>
           <td><%= department.name %></td>
-          <td>
-            <%= link_to 'Project Guidelines', university_department_path(current_user.university, department) %>
-          </td>
+          <td><%= link_to 'View', university_department_path(current_user.university, department) %></td>
         </tr>
       <% end %>
     <% end %>

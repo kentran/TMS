@@ -1,4 +1,4 @@
-<h2 class="content-item">Create New User</h2>
+<h2 id="new-user" class="content-item">Create New User</h2>
 
 <%= form_for @user, url: {action: "create_new"}, html: {class: "input-group"}  do |f| %>
   <% if flash[:notice] %>
@@ -29,4 +29,19 @@
   <div><%= f.submit "Create", :class => "btn btn-primary" %></div>
 <% end %>
 
-<%= render 'import' %>
+<hr>
+
+<h2 id="import-user" class="content-item">Import Users</h2>
+<%= form_tag({action: :import}, class: 'input-group') do %>
+  <div><%= label_tag :role %>
+    <%= select_tag :role, options_for_select([['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %></div>
+  <div><%= text_area_tag 'email_list', nil, size: '50x4', class: 'form-control', placeholder: 'Enter email addresses, 1 per line'  %></div>
+
+  <br/>
+  <div><%= submit_tag ('Import'), :class => 'btn btn-primary'  %></div>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="label label-success"><%= flash[:notice] %></div>
+<% end %>
+

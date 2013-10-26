@@ -8,7 +8,7 @@
 <% end %>
 
 <div class="panel panel-success">
-  <table class="table table-hover">
+  <table id="users-table" class="table table-hover">
     <tr class="success">
       <th>Role</th>
       <th>First Name</th>
@@ -16,6 +16,9 @@
       <th>Email</th>
       <% if can? :read, University %>
         <th>University</th>
+      <% end %>
+      <% if can? :read, Department %>
+        <th>Department</th>
       <% end %>
       <th>
         <% if can? :add, User %>
@@ -32,7 +35,10 @@
       <td><%= user.email %></td>
       <% if can? :read, University %>
         <td><%= link_to user.university.name, university_path(user.university.id) %></td>
-      <% end %>      
+      <% end %> 
+      <% if can? :write, Department %>
+        <td><%= user.department.name %></td>
+      <% end %>     
       <td>
         <%= link_to "Show", user %>
         <% if can? :edit, user %>

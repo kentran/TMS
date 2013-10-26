@@ -14,4 +14,7 @@ $(document).ready(function() {
 		item.append(link);
 		sidebar_items.append(item);
 	});
+
+	$("#sidebar li").first().addClass("active");
+	$("body").scrollspy({ target: '#sidebar-nav'});
 });

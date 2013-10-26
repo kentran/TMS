@@ -10,7 +10,7 @@
 	</div>
 <% end %>
 
-<br/><br/>
+<h2 id="my-students" class="content-item">My Students</h2>
 <% @students.each do |student| %>
 	<div class="panel panel-success prof-panel">
 		<div class="panel-heading">
@@ -60,6 +60,7 @@
 		</div>
 
 		<div class="panel-footer">
+			<%= link_to "View Project", student.projects[0], :class => "btn btn-primary" %>
 			<%= link_to "Send Notification", project_notifications_path(student.projects[0]), :method => :post,
 				:class => "btn btn-success", :data => {:confirm => "Are you sure?"} %>
 		</div>

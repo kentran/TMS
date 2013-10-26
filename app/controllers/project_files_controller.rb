@@ -1,4 +1,14 @@
 class ProjectFilesController < ApplicationController
+
+	#
+	# ProjectFilesController:destroy
+	#
+	# Handle DELETE request to route /project_files/:id
+	# Parameters: id (id of the file)
+	#
+	# Delete the file from the project and from the database
+	# Redirect to previous page when done
+	#
 	def destroy
 		@project_file = ProjectFile.find(params[:id])
 		@project_file.destroy
@@ -7,7 +17,15 @@ class ProjectFilesController < ApplicationController
 		redirect_to :back, :alert => "File deleted"
 	end 
 
-	# Toggle the primary attribute of the file
+	#
+	# ProjectFilesController:destroy
+	#
+	# Handle PUT request (AJAX) to route /project_files/:id
+	# Parameters: id (id of the file)
+	#
+	# Toggle the attribute "primary" in the ProjectFile object
+	# Return result as JSON for AJAX handling
+	#
 	def update
 		@project_file = ProjectFile.find(params[:id])
 		if @project_file.primary == false
