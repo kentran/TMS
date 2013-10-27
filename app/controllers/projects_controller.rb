@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     @my_files = Hash.new
     @students.each do |student|
       @student_files[student] = student.project_files.order("updated_at DESC").all(
-        :conditions => ["project_files.primary = ?", true])
+        :conditions => ["project_files.primary = ?", 1])
 
       @my_files[student] = current_user.project_files.order("updated_at DESC").all(
         :conditions => ["project_files.project_id = ?", student.projects[0].id])
