@@ -13,7 +13,7 @@ university = University.create! ([
 
 # Create departments
 department = university.departments.create ([
-	{ name: 'Technical', university: universities.first },
+	{ name: 'Technical', university: university },
 ])
 
 # Create admin users
