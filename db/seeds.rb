@@ -32,7 +32,7 @@ User.create([
 		last_name: 'Tran',
 		title: 'Mr.',
 		role: 'Admin',
-		university: '1',
-		department: '1'
+		university_id: '1',
+		department_id: '1'
 	}
 ])
