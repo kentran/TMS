@@ -21,14 +21,8 @@
   <div><%= f.label :title %><br />
   <%= f.text_field :title %></div>
 
-  <div><%= f.label :university %><br />
-  <%= f.text_field :university %></div>
-
-  <div><%= f.label :department %><br />
-  <%= f.text_field :department %></div>
-
-  <div><%= f.label :level %>
-  <%= f.select(:level, [['admin', 0], ['student',10], ['professor', 11], ['moderator', 12]]) %></div>
+  <div><%= f.label :role %>
+  <%= f.select(:role, [['Admin', 'Admin'], ['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

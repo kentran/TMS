@@ -75,7 +75,7 @@ class UsersController < Devise::RegistrationsController
         @university.users << @user
         @department.users << @user
       end
-      
+
       record_activity("updated user details: " + @user.id.to_s)
       if can? :read, User, :index => true                                   # redirect to user index page if current_user
         redirect_to user_path, :notice => "User updated successfully"       # has permission to view it
@@ -115,7 +115,7 @@ class UsersController < Devise::RegistrationsController
   def create_new
     @user = User.new(params[:user])
     @university = University.find(params[:university])
-    @department = University.find(params[:department])
+    @department = Department.find(params[:department])
     
     if @user.save
       @university.users << @user
