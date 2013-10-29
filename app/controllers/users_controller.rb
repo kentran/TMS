@@ -170,7 +170,7 @@ class UsersController < Devise::RegistrationsController
   def search_prof
     # Search for email or name of professor
     term = "%#{params[:term]}%"
-    @users = User.all(:conditions => ["(first_name LIKE LOWER(?) OR last_name LIKE LOWER(?) OR email LIKE LOWER(?)) AND role = ?", term, term, term, "Professor"])
+    @users = User.all(:conditions => ["(LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?) OR LOWER(email) LIKE LOWER(?)) AND role = ?", term, term, term, "Professor"])
 
     # Return a JSON with "label" and "value" as key required by JQUeryUI autocomplete
     result = Array.new
