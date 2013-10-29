@@ -153,7 +153,7 @@ class ProjectsController < ApplicationController
       # or get the file of the student when current user is a professor
       if (user != current_user && student?) || (user != current_user && professor? && user.role != 'Professor')                                     
         @file_groups[user] = user.project_files.order("updated_at DESC").all(
-          :conditions => ["project_files.primary = ? AND project_files.project_id = ?", 1, @project.id])               
+          :conditions => ["project_files.primary = ? AND project_files.project_id = ?", true, @project.id])               
       end
     end
   end
