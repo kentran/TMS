@@ -11,12 +11,15 @@ class HomeController < ApplicationController
     # Professor to the project index page
     #
     def index
-        @projects = current_user.projects.find(:all)
+        @projects = current_user.projects
 
-        if @projects.count == 1
-        	redirect_to project_path(@projects[0])
-        elsif student?
-        	redirect_to new_user_project_path(current_user)
+
+        if student?
+            if current_user.projects.empty?
+                redirect_to new_user_project_path(current_user)
+            else
+                redirect_to project_path(@projects[0])
+            end
         elsif professor?
         	redirect_to user_projects_path(current_user)
         elsif manager?
