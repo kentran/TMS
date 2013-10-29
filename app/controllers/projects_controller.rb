@@ -144,7 +144,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find(params[:id])
     @project_files = @project.project_files.order("updated_at DESC").all
     @project_references = @project.project_references.all
-    @supervisors = @project.users.all(:conditions => ['role = ?', 'professor'])
+    @supervisors = @project.users.all(:conditions => ['role = ?', 'Professor'])
 
     @my_files = current_user.project_files.order("updated_at DESC").all
     @file_groups = Hash.new
