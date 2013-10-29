@@ -8,12 +8,12 @@
 
 # Create universities
 university = University.create! (
-	{ name: 'TMS', description: 'TMS administration' },
+	{ name: 'TMS', description: 'TMS administration' }
 )
 
 # Create departments
 department = Department.create! (
-	{ name: 'Technical', university_id: university.id },
+	{ name: 'Technical', university_id: university.id }
 )
 
 # Create admin users
