@@ -6,7 +6,7 @@
   <ul class="nav nav-tabs navbar-nav">
     <% if user_signed_in? %>
       <% if current_user.role == 'Student' %>
-        <% if current_user.projects.empty? %>
+        <% unless current_user.projects[0].try(:new_record?) %>
           <%= nav_link 'Home', project_path(current_user.projects[0]) %>
         <% end %>
       <% elsif current_user.role == 'Professor' %>
