@@ -17,7 +17,7 @@ department = Department.create! (
 )
 
 # Create admin users
-user == User.create!(
+user = User.create!(
 	{
 		email: 'admin@tms.com',
 		password: 'qwerty123',
