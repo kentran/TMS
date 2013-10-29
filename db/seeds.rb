@@ -12,7 +12,7 @@ university = University.create! ([
 ])
 
 # Create departments
-department = university.departments.create ([
+department = Department.create! ([
 	{ name: 'Technical', university_id: university.id },
 ])
 
