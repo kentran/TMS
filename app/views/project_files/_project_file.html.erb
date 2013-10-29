@@ -1,5 +1,5 @@
 <td>
-	<% if project_file.primary == true && project_file.user_id == current_user.id %>
+	<% if project_file.primary_file == true && project_file.user_id == current_user.id %>
 		<span class="label label-primary">Primary</span>
 	<% end %>
 	<%= project_file.original_file_name %>
@@ -7,7 +7,7 @@
 <td><%= project_file.created_at %></td>
 <td>
 	<% if current_user.id == project_file.user_id %>
-		<% if project_file.primary == false %>
+		<% if project_file.primary_file == false %>
 			<%= link_to "Mark as Primary", project_file, :method => :put, remote: true %> 
 		<% else %>
 			<%= link_to "Remove Primary", project_file, :method => :put, remote: true %> 

@@ -23,15 +23,15 @@ class ProjectFilesController < ApplicationController
 	# Handle PUT request (AJAX) to route /project_files/:id
 	# Parameters: id (id of the file)
 	#
-	# Toggle the attribute "primary" in the ProjectFile object
+	# Toggle the attribute "primary_file" in the ProjectFile object
 	# Return result as JSON for AJAX handling
 	#
 	def update
 		@project_file = ProjectFile.find(params[:id])
-		if @project_file.primary == false
-			@project_file.update_attributes(:primary => true)
+		if @project_file.primary_file == false
+			@project_file.update_attributes(:primary_file => true)
 		else
-			@project_file.update_attributes(:primary => false)
+			@project_file.update_attributes(:primary_file => false)
 		end
 
 		respond_to do |format|

@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     @my_files = Hash.new
     @students.each do |student|
       @student_files[student] = student.project_files.order("updated_at DESC").all(
-        :conditions => ["project_files.primary = ?", true])
+        :conditions => ["project_files.primary_file = ?", true])
 
       @my_files[student] = current_user.project_files.order("updated_at DESC").all(
         :conditions => ["project_files.project_id = ?", student.projects[0].id])
@@ -153,7 +153,7 @@ class ProjectsController < ApplicationController
       # or get the file of the student when current user is a professor
       if (user != current_user && student?) || (user != current_user && professor? && user.role != 'Professor')                                     
         @file_groups[user] = user.project_files.order("updated_at DESC").all(
-          :conditions => ["project_files.primary = ? AND project_files.project_id = ?", true, @project.id])               
+          :conditions => ["project_files.primary_file = ? AND project_files.project_id = ?", true, @project.id])               
       end
     end
   end

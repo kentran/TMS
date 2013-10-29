@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026144927) do
+ActiveRecord::Schema.define(:version => 20131029061910) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20131026144927) do
     t.datetime "updated_at",                            :null => false
     t.string   "file_path"
     t.string   "original_file_name"
-    t.boolean  "primary",            :default => false, :null => false
+    t.boolean  "primary_file",       :default => false, :null => false
   end
 
   add_index "project_files", ["project_id"], :name => "index_project_files_on_project_id"
