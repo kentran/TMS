@@ -13,7 +13,7 @@ university = University.create! ([
 
 # Create departments
 department = university.departments.create ([
-	{ name: 'Technical', university: university },
+	{ name: 'Technical', university_id: university.id },
 ])
 
 # Create admin users
@@ -25,9 +25,8 @@ user == User.create!([
 		first_name: 'Ken',
 		last_name: 'Tran',
 		title: 'Mr.',
-		role: 'Admin'
+		role: 'Admin',
+		university_id: university.id,
+		department_id: department.id
 	}
 ])
-
-university << user
-department << user
