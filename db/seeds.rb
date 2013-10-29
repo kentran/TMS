@@ -7,19 +7,19 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create universities
-universities = University.create ([
+universities = University.create! ([
 	{ name: 'TMS', description: 'TMS administration' },
 	{ name: 'NUS', description: 'A very awesome University. This is where Ken studied' },
 	{ name: 'NTU', description: 'This is another awesome university' }
 ])
 
 # Create departments
-departments = Department.create ([
+departments = Department.create! ([
 	{ name: 'Technical', university: universities.first },
 ])
 
 # Create admin users
-User.create([
+User.create!([
 	{
 		email: 'admin@tms.com',
 		password: 'qwerty123',
