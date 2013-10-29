@@ -1,6 +1,6 @@
 class UsersController < Devise::RegistrationsController
   # Authorize the user for some certain action in this controller
-  load_and_authorize_resource :only => [:index, :destroy, :create_new, :batch_create, :update]
+  load_and_authorize_resource :only => [:index, :destroy, :create_new, :batch_create]
 
   #
   # UsersController:index
@@ -65,13 +65,17 @@ class UsersController < Devise::RegistrationsController
   #
   def update
     @user = User.find(params[:id])
-    @university = University.find(params[:university])
-    @department = Department.find(params[:department])
 
     if @user.update_attributes(params[:user])
       # Attach the user to according university and department
-      @university.users << @user
-      @department.users << @user
+      # If there is any university update
+      if params[:university]
+        @university = University.find(params[:university])
+        @department = Department.find(params[:department])
+        @university.users << @user
+        @department.users << @user
+      end
+      
       record_activity("updated user details: " + @user.id.to_s)
       if can? :read, User, :index => true                                   # redirect to user index page if current_user
         redirect_to user_path, :notice => "User updated successfully"       # has permission to view it
