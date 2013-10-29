@@ -11,8 +11,8 @@ class UserMailer < ActionMailer::Base
   def notification_email(user, project)
   	@user = user
   	@project = project
-  	mail(to: @user.email, subject: 'Project - ' + @project.title + ' - is ready for review')
     @url = "http://tms-fyp.herokuapp.com"
+  	mail(to: @user.email, subject: 'Project - ' + @project.title + ' - is ready for review')
   end
 
   def reminder_email(reminder)
