@@ -15,11 +15,11 @@ University.create ([
 
 # Create departments
 Department.create ([
-	{ name: 'Technical', university_id: 1 },
-	{ name: 'Electrical and Computer Engineering', university_id: 2 },
-	{ name: 'Computer Science', university_id: 2 },
-	{ name: 'Computer Science', university_id: 3 },
-	{ name: 'Electrical Engineering', university_id: 3 },
+	{ name: 'Technical', university: University.find_by_name('TMS') },
+	{ name: 'Electrical and Computer Engineering', university: University.find_by_name('NUS') },
+	{ name: 'Computer Science', university: University.find_by_name('NUS') },
+	{ name: 'Computer Science', university: University.find_by_name('NTU') },
+	{ name: 'Electrical Engineering', university: University.find_by_name('NTU') },
 ])
 
 # Create admin users
@@ -32,7 +32,7 @@ User.create([
 		last_name: 'Tran',
 		title: 'Mr.',
 		role: 'Admin',
-		university_id: 1,
-		department_id: 1
+		university: University.find_by_name('TMS'),
+		university: Department.find_by_name('Technical')
 	}
 ])
