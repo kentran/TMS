@@ -1,7 +1,7 @@
 namespace :reminder do
   desc "send email reminder"
   task :send_reminder => :environment do
-  	@reminders = Reminder.all(:conditions => ["status = 'Pending' and date between NOW() and NOW() + interval 1 day"])
+  	@reminders = Reminder.all(:conditions => ["status = 'Pending' and date < NOW()"])
 
   	@reminders.each do |reminder|
   		UserMailer.reminder_email(reminder).deliver
