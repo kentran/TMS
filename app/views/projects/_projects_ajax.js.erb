@@ -64,4 +64,10 @@ $(document).ready( function() {
 		$(this).tab('show');
 	});
 
+	$(".accordion-toggle").on("click", function(e) {
+		if ($(this).html() == 'Show')
+			$(this).html("Hide");
+		else if ($(this).html() == 'Hide')
+			$(this).html("Show");
+	});
 });

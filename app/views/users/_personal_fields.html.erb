@@ -5,8 +5,9 @@
 <div><%= f.label :last_name %><br />
 <%= f.text_field :last_name, :class => "form-control" %></div>
 
-<div><%= f.label :title %><br />
-<%= f.text_field :title, :class => "form-control" %></div>
+<div><%= f.label :title %>
+<%= f.select(:title, [['Mr.', 'Mr.'], ['Ms.', 'Ms.'], ['Prof.', 'Prof.'], ['Assoc. Prof.', 'Assoc. Prof.'],['Dr.', 'Dr.']]) %>
+</div>
 
 <div>
 <% if can? :assign_super_admin, current_user %>
@@ -17,6 +18,7 @@
   <%= f.select(:role, [['Student', 'Student'], ['Professor', 'Professor'], ['Manager', 'Manager']]) %>
 <% end %>
 <br/>
+
 <% if can? :manage, University %>
   <div><%= f.label :university %>	
   	<%= select_tag(:university, options_from_collection_for_select(University.all, :id, :name)) %>
@@ -24,9 +26,15 @@
 <% else %>
 	<%= hidden_field_tag(:university, current_user.university.id) %>
 <% end %>
+
 <% if can? :manage, Department %>
   <div><%= f.label :department %>	
-  	<%= select_tag(:department, options_from_collection_for_select(current_user.university.departments.all, :id, :name)) %>
+    <% departments_array = current_user.university.departments.all.map { |department| [department.name, department.id] } %>
+    <% if user.try(:new_record?) %>
+      <%= f.select :department_id, options_for_select(departments_array) %>
+    <% else %>
+      <%= f.select :department_id, options_for_select(departments_array, user.department.id) %>
+    <% end %>
   </div>
 <% end %>
 </div>

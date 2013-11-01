@@ -71,9 +71,9 @@ class UsersController < Devise::RegistrationsController
       # If there is any university update
       if params[:university]
         @university = University.find(params[:university])
-        @department = Department.find(params[:department])
+        #@department = Department.find(params[:department])
         @university.users << @user
-        @department.users << @user
+        #@department.users << @user
       end
 
       record_activity("updated user details: " + @user.id.to_s)
@@ -115,11 +115,9 @@ class UsersController < Devise::RegistrationsController
   def create_new
     @user = User.new(params[:user])
     @university = University.find(params[:university])
-    @department = Department.find(params[:department])
     
     if @user.save
       @university.users << @user
-      @department.users << @user
       record_activity("created new user: " + @user.email)
       # Send an email notification to the user
       UserMailer.welcome_email(@user).deliver

@@ -35,9 +35,11 @@
 				<td><%= department.deadline %></td>
 				<% if Time.now.to_date > department.deadline %>
 					<td>
-					<% student.project_files.take_while{ |o| o.primary_file == true }.each do |project_file| %>
-						<%= link_to project_file.original_file_name, :action => :download, 
-							:file_name => project_file.file_name, :controller => "projects" %><br>
+					<% student.project_files.each do |project_file| %>
+						<% if project_file.primary_file == true %>
+							<%= link_to project_file.original_file_name, :action => :download, 
+								:file_name => project_file.file_name, :controller => "projects" %><br>
+						<% end %>
 					<% end %>
 					</td>
 				<% end %>

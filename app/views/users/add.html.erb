@@ -24,7 +24,7 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation, :class => "form-control" %></div>
  
-  <%= render 'personal_fields', :f => f %>
+  <%= render 'personal_fields', :f => f, :user => @user %>
 
   <div><%= f.submit "Create", :class => "btn btn-primary" %></div>
 <% end %>

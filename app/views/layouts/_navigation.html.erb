@@ -28,7 +28,7 @@
       <% end %>
 
       <% if current_user.role == 'Student' %>
-        <li><a href="#">Timeline</a></li>
+        <!-- <li><a href="#">Timeline</a></li> -->
       <% end %>
 
       <% if current_user.role == 'Student' || current_user.role == 'Professor' %>
@@ -45,7 +45,13 @@
   
   <ul class="nav navbar-nav pull-right">
     <% if user_signed_in? %>
-      <%= nav_link current_user.first_name + " " + current_user.last_name, edit_user_registration_path %>
+      <% if current_user.first_name.empty? && current_user.last_name.empty? %>
+        <% account_name = current_user.email %>
+      <% else %>
+        <% account_name = current_user.first_name + " " + current_user.last_name %>
+      <% end %>
+      <%= nav_link account_name, edit_user_registration_path %>
+      
       <li>
       <%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %>
       </li>
