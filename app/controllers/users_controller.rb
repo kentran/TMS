@@ -138,13 +138,17 @@ class UsersController < Devise::RegistrationsController
   #
   def batch_create
     email_list = params[:email_list].split
- 
+    @univeristy = current_user.university
+    @department = current_user.department
+
     email_list.each do |email|
       # Generate a password and create the user
       generated_password = Devise.friendly_token.first(8)
       user = User.new(:email => email, :password => generated_password, :role => params[:role])
 
       if user.save
+        university.users << user
+        department.users << user
         record_activity("created new user (batch): " + user.email)
         # Send an email with generated password to the user
         UserMailer.welcome_email(user).deliver
