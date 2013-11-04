@@ -7,6 +7,10 @@
   </div>
 <% end %>
 
+<% if can? :add, User %>
+  <%= link_to 'Add User', add_user_path, :class => "btn btn-success btn-large btn-block" %>
+<% end %>
+
 <div class="panel panel-success">
   <table id="users-table" class="table table-hover">
     <tr class="success">
@@ -21,9 +25,6 @@
         <th>Department</th>
       <% end %>
       <th>
-        <% if can? :add, User %>
-          <%= link_to 'Add User', add_user_path %>
-        <% end %>
       </th>
     </tr>
 

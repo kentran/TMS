@@ -45,7 +45,8 @@
   
   <ul class="nav navbar-nav pull-right">
     <% if user_signed_in? %>
-      <% if current_user.first_name.empty? && current_user.last_name.empty? %>
+      <% if (current_user.first_name == nil && current_user.last_name == nil) || 
+        (current_user.first_name.empty? && current_user.last_name.empty?) %>
         <% account_name = current_user.email %>
       <% else %>
         <% account_name = current_user.first_name + " " + current_user.last_name %>

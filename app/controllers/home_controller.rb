@@ -26,4 +26,16 @@ class HomeController < ApplicationController
             redirect_to manager_home_path
         end
     end
+
+    def about_us
+    end
+
+    def contact_us
+    end
+
+    def term_of_service
+    end
+
+    def privacy_policy
+    end
 end

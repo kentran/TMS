@@ -4,11 +4,13 @@
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
+<%= link_to "Add Department", new_university_department_path(@university), :class => "btn btn-success btn-large btn-block" %>
+
 <div class="panel panel-success">
   <table class="table table-hover">
     <tr class="success">
       <th>Department</th>
-      <th><%= link_to "Add Department", new_university_department_path(@university) %></th>
+      <th></th>
     </tr>
 
     <% @departments.each do |department| %>

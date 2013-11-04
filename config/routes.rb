@@ -40,6 +40,10 @@ Tms::Application.routes.draw do
   post "/projects/:id/add_collaborator" => "projects#add_collaborator", :as => "add_collaborator"
   delete "projects/:id/remove_collaborator/:collaborator_id" => "projects#remove_collaborator"
 
+  get "/about_us" => "home#about_us"
+  get "/contact_us" => "home#contact_us"
+  get "/term_of_service" => "home#term_of_service"
+  get "/privacy_policy" => "home#privacy_policy"
   get "home/index"
   root :to => "home#index"
 

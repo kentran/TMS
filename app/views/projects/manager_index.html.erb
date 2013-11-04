@@ -12,7 +12,7 @@
 
 <h1 id="all-projects" class="content-item">Projects List</h1>
 <% @department_students.each do |department, students| %>
-<h2 id="<%= department.name %>" class="content-item"><%= department.name %></h2>
+<h2 id="<%= department.id %>" class="content-item"><%= department.name %></h2>
 	<div class="panel panel-success prof-panel">
 		<div class="panel-heading"><%= department.name %> Projects</div>
 
@@ -27,11 +27,13 @@
 			<% students.each do |student| %>
 			<tr>
 				<td>
-				<% if student.first_name.empty? && student.last_name.empty? %>
-					<%= link_to student.email, user_path(student) %>
+				<% if (student.first_name == nil && student.last_name == nil) || 
+					(student.first_name.empty? && student.last_name.empty?) %>
+					<% studentAccName = student.email %>
 				<% else %>
-					<%= link_to student.first_name + " " + student.last_name, user_path(student) %>
+					<% studentAccName = student.first_name + " " + student.last_name %>
 				<% end %>
+				<%= link_to studentAccName, user_path(student) %>
 				</td>
 				<% if student.projects[0] != nil %>
 					<td><%= student.projects[0].title %></td>
