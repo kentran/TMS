@@ -26,7 +26,13 @@
 
 			<% students.each do |student| %>
 			<tr>
-				<td><%= link_to student.first_name + " " + student.last_name, user_path(student) %></td>
+				<td>
+				<% if student.first_name.empty? && student.last_name.empty? %>
+					<%= link_to student.email, user_path(student) %>
+				<% else %>
+					<%= link_to student.first_name + " " + student.last_name, user_path(student) %>
+				<% end %>
+				</td>
 				<% if student.projects[0] != nil %>
 					<td><%= student.projects[0].title %></td>
 				<% else %>
