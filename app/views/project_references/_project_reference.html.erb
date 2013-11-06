@@ -28,7 +28,7 @@
 			<% end %>
 			<% if project_reference.content.to_s != '' %>
 				<strong>Content:</strong><br/>
-				<%= project_reference.content %>
+				<%= raw(simple_format(project_reference.content)) %>
 			<% end %>
 		</div>
 	</div>
