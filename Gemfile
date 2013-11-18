@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'devise'
 gem 'cancan'
+#gem 'protected_attributes'
 
 gem 'unicorn'
 gem 'rails_12factor', group: :production
