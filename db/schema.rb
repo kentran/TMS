@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104172018) do
+ActiveRecord::Schema.define(:version => 20131121042100) do
 
   create_table "activity_logs", :force => true do |t|
     t.string   "user_id"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(:version => 20131104172018) do
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.integer  "university_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.text     "format"
-    t.date     "deadline"
+    t.date     "deadline",      :default => '2013-11-21'
   end
 
   add_index "departments", ["university_id"], :name => "index_departments_on_university_id"

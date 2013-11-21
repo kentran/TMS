@@ -1,7 +1,13 @@
 <h2 id="project-guidelines" class="content-item">Project Guidelines</h2>
 
 <h3><%= @department.name %></h3>
-<div><%= raw(simple_format(@department.format)) %></div>
+<div>
+  <% if @department.format != nil %>
+    <%= raw(simple_format(@department.format)) %>
+  <% else %>
+    <i>Format is not added</i>
+  <% end %>
+</div>
 
 <h2 id="other-guidelines" class="content-item">Other Guidelines</h2>
 <div class="panel panel-success">

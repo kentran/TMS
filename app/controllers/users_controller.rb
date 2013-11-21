@@ -207,8 +207,8 @@ class UsersController < Devise::RegistrationsController
       end
     end
 
-    # Get all users if current user is a manager
-    if manager?
+    # Get all users if current user is a manager or admin
+    if manager? || admin?
       @users = current_user.university.users
     end
 
